@@ -1,235 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Elective</title>
+  <title>Elective</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Vollkorn&display=swap" rel="stylesheet">
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
 
 
 </head>
 <body>
-<!--<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">-->
-<!--    <div class="container">-->
-<!--        <a class="navbar-brand" href="index.html">Elective</a>-->
-<!--        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"-->
-<!--                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"-->
-<!--                aria-label="Toggle navigation">-->
-<!--            Menu-->
-<!--            <i class="fas fa-bars"></i>-->
-<!--        </button>-->
-<!--        <div class="collapse navbar-collapse" id="navbarResponsive">-->
-<!--            <ul class="navbar-nav ml-auto">-->
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="index.html">Categories-->
-<!--                        <span class="caret"></span></a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li><a href="#">Page 1-1</a></li>-->
-<!--                        <li><a href="#">Page 1-2</a></li>-->
-<!--                        <li><a href="#">Page 1-3</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            <form class="navbar-form navbar-left search_bar" action="">-->
-<!--                <div class="input-group">-->
-<!--                    <input type="search">-->
-<!--                    <i class="fa fa-search"></i>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--            &lt;!&ndash;                <form class="navbar-form navbar-left" action="/action_page.php">&ndash;&gt;-->
-<!--            &lt;!&ndash;                <div class="input-group">&ndash;&gt;-->
-<!--            &lt;!&ndash;                <input type="text" class="form-control input-lg" placeholder="Search">&ndash;&gt;-->
-<!--            &lt;!&ndash;                <div class="input-group-btn">&ndash;&gt;-->
-<!--            &lt;!&ndash;                <button class="btn btn-default" type="submit">&ndash;&gt;-->
-<!--            &lt;!&ndash;                <i class="glyphicon glyphicon-search"></i>&ndash;&gt;-->
-<!--            &lt;!&ndash;                </button>&ndash;&gt;-->
-<!--            &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--            &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--            &lt;!&ndash;                </form>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <form>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <div class="input-group input-group-lg">&ndash;&gt;-->
-<!--            &lt;!&ndash;                        <input type="text" class="form-control" placeholder="Search">&ndash;&gt;-->
-<!--            &lt;!&ndash;                        <div class="input-group-btn">&ndash;&gt;-->
-<!--            &lt;!&ndash;                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>&ndash;&gt;-->
-<!--            &lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--            &lt;!&ndash;                </form>&ndash;&gt;-->
-<!--            <button class="btn btn-danger navbar-btn">Login</button>-->
-<!--            <button class="btn btn-danger navbar-btn">Signup</button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" href="#">Elective</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Programming</a>
+          <a class="dropdown-item" href="#">Design</a>
+          <a class="dropdown-item" href="#">Math</a>
+          <a class="dropdown-item" href="#">Algorithms</a>
+          <!--<div class="dropdown-divider"></div>-->
+          <a class="dropdown-item" href="#">Architecture</a>
+          <a class="dropdown-item" href="#">Business</a>
+          <a class="dropdown-item" href="#">Cloud Computing</a>
+          <a class="dropdown-item" href="#">Social Sciences</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <div class="input-group">
+        <input type="search" class="form-control py-0 px-0" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-dark" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <button class="btn btn-outline-info mx-2">Login</button>
+    <button class="btn btn-outline-info mx-2">Signup</button>
+  </div>
 </nav>
 
 <!-- Page Header -->
 <header class="masthead">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 bg-2 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>Clean Blog</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
-                </div>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="bg-2 col-lg-10 mx-auto">
+        <form class="form-inline my-2 my-lg-0">
+          <div class="col-lg-12">
+            <div class="input-group">
+              <input type="search" class="form-control input-lg py-0 px-0" placeholder="Search for anyting">
+              <div class="input-group-btn input-lg">
+                <button class="btn btn-dark" type="submit">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </div>
             </div>
-        </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </header>
 
 <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        Man must explore, and this is exploration at its greatest
-                    </h2>
-                    <h3 class="post-subtitle">
-                        Problems look mighty small from 150 miles up
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on September 24, 2019</p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on September 18, 2019</p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        Science has not yet mastered prophecy
-                    </h2>
-                    <h3 class="post-subtitle">
-                        We predict too much for the next year and yet far too little for the next ten.
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on August 24, 2019</p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        Failure is not an option
-                    </h2>
-                    <h3 class="post-subtitle">
-                        Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on July 8, 2019</p>
-            </div>
-            <hr>
-            <!-- Pager -->
-            <div class="clearfix">
-                <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-            </div>
-        </div>
+<div class="container search-results">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="post-preview">
+        <a href="post.html">
+          <h2 class="post-title">
+            Man must explore, and this is exploration at its greatest
+          </h2>
+          <h3 class="post-subtitle">
+            Problems look mighty small from 150 miles up
+          </h3>
+        </a>
+        <p class="post-meta">Posted by
+          <a href="#">Start Bootstrap</a>
+          on September 24, 2019</p>
+      </div>
+      <hr>
+      <div class="post-preview">
+        <a href="post.html">
+          <h2 class="post-title">
+            I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+          </h2>
+        </a>
+        <p class="post-meta">Posted by
+          <a href="#">Start Bootstrap</a>
+          on September 18, 2019</p>
+      </div>
+      <hr>
+      <div class="post-preview">
+        <a href="post.html">
+          <h2 class="post-title">
+            Science has not yet mastered prophecy
+          </h2>
+          <h3 class="post-subtitle">
+            We predict too much for the next year and yet far too little for the next ten.
+          </h3>
+        </a>
+        <p class="post-meta">Posted by
+          <a href="#">Start Bootstrap</a>
+          on August 24, 2019</p>
+      </div>
+      <hr>
+      <div class="post-preview">
+        <a href="post.html">
+          <h2 class="post-title">
+            Failure is not an option
+          </h2>
+          <h3 class="post-subtitle">
+            Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+          </h3>
+        </a>
+        <p class="post-meta">Posted by
+          <a href="#">Start Bootstrap</a>
+          on July 8, 2019</p>
+      </div>
+      <hr>
+      <!-- Pager -->
+      <div class="clearfix">
+        <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+      </div>
     </div>
+  </div>
 </div>
 
 <hr>
 
 <!-- Footer -->
 <footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <ul class="list-inline text-center">
-                    <li class="list-inline-item">
-                        <a href="#">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          <li class="list-inline-item">
+            <a href="#">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                 </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                 </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                 </span>
-                        </a>
-                    </li>
-                </ul>
-                <p class="copyright text-muted">&copy; Elective 2019</p>
-            </div>
-        </div>
+            </a>
+          </li>
+        </ul>
+        <p class="copyright text-muted">&copy; Elective 2019</p>
+      </div>
     </div>
+  </div>
 </footer>
 </body>
 </html>
