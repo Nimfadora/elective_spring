@@ -23,7 +23,18 @@ $(function() {
         "Scala",
         "Scheme"
     ];
-    $( "#search_bar" ).autocomplete({
-        source: availableTags
-    });
+    // $("#search_bar").autocomplete({
+    //     source: availableTags
+    // });
+
+    $("#show_all").click(function() {
+        var desc = $("#course-desc");
+        if(desc.hasClass("desc-short")) {
+            $(this).text("Скрыть");
+            desc.removeClass("desc-short");
+        } else {
+            $(this).text("Показать все");
+            desc.addClass("desc-short");
+        }
+    })
 });

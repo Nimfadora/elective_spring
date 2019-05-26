@@ -1,0 +1,244 @@
+body {
+    font-size: 14px;
+    font-family: 'Vollkorn', sans-serif;
+}
+
+.navbar {
+    min-height: 50px;
+}
+
+.navbar, .dropdown-menu, .navbar input[type=search], .navbar button, .load-more {
+    font-size: 25px;
+}
+
+.navbar button {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.navbar-brand {
+    padding: 0 15px;
+    height: 50px;
+    line-height: 50px;
+}
+
+header.masthead input[type=search], header.masthead button, .navbar-brand {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+header.masthead {
+    padding: 47vh 0 47vh;
+    margin-bottom: 50px;
+    background: no-repeat center center;
+    background-color: #868e96;
+    background-attachment: scroll;
+    background-image: url('/img/home-bg.jpg');
+    position: relative;
+    background-size: cover;
+}
+
+header.masthead .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #212529;
+    opacity: 0.5;
+}
+
+form .search_bar {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+}
+
+form.search_bar input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+form.search_bar:hover {
+    width: 200px;
+    cursor: pointer;
+}
+
+form.search_bar:hover input {
+    display: block;
+}
+
+form.search_bar:hover .fa {
+    background: #07051a;
+    color: white;
+}
+
+/* search facets */
+.extended-search, .menu-tabs{
+    margin-top: 60px;
+    padding: 0 1rem 2rem 1rem;
+    background-color: #f8f9fa;
+}
+
+.extended-search select {
+    font-size: 14px !important;
+}
+
+.submit-ex-search {
+    margin-top: 2rem;
+}
+
+.submit-ex-search button {
+    font-size: 14px !important;
+}
+
+/* course card */
+
+.course-data {
+    width: 38rem; /* or whatever width you want. */
+    max-width: 36rem; /* or whatever width you want. */
+    display: inline-block;
+    margin: 1rem;
+
+}
+
+.course-item {
+    padding: 1rem;
+    box-shadow: 0 0 1px 1px rgba(20, 23, 28, .1), 0 3px 1px 0 rgba(20, 23, 28, .1);
+    opacity: 1;
+}
+
+.course-item p {
+    padding: 1rem 1rem 0 1rem;
+}
+
+.course-info {
+    width: 32rem;
+    padding-top: 1rem;
+    display: inline-block;
+}
+
+.course-meta span {
+    display: block;
+    float: left;
+    padding: 0 0.5rem 0 0.5rem;
+    border-left: 2px solid;
+}
+
+.course-card {
+    display: inline-block;
+}
+
+.course-card img {
+    width: 28rem;
+    height: 15rem;
+    object-fit: cover;
+}
+
+/* star rating */
+
+.score {
+    display: block;
+    font-size: 16px;
+    position: relative;
+    float: left;
+    overflow: hidden;
+    padding: 0 10px 0 10px;
+}
+
+.score-wrap {
+    display: inline-block;
+    float: left;
+    position: relative;
+    height: 19px;
+}
+
+.score .stars-active {
+    color: #EEBD01;
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.score .stars-inactive {
+    color: grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-text-stroke: initial;
+    /* overflow: hidden; */
+}
+
+/* student */
+
+.menu-tabs {
+    font-size: 25px;
+    /*background-color: rgb(0, 123, 255);*/
+    /*color: #495057;*/
+}
+.menu-tab {
+    border-right: 2px  solid #495057;
+}
+
+.menu-tab a {
+    color: rgba(0,0,0,.5);
+}
+
+.menu-tab.active a {
+    color: rgba(0,0,0,.9);
+}
+
+.menu-tab a:hover {
+    color: rgba(0,0,0,.9);
+}
+
+.student-buttons {
+    display: inline-block;
+    padding-top: 1rem;
+}
+
+.student-buttons button {
+    font-size: 14px;
+}
+
+/* course page */
+.course-page-content {
+    margin-top: 60px;
+    padding: 1rem;
+}
+
+.desc-text {
+    overflow: hidden;
+    display: block;
+    word-wrap: break-word;
+    font-size: 16px !important;
+}
+
+.desc-short {
+    height: 200px;
+}
+
+.course-page-content button {
+    font-size: 16px !important;
+}

@@ -1,0 +1,5 @@
+{"userName": "Matvei Dunaevskii","password": "324","role": "STUDENT"}
+{"userName": "Robert Baratheon","password": "546","role": "STUDENT"}
+{"userName": "Robert Baratheon","password": "745","role": "STUDENT"}
+{"userName": "Matilda Begshot","password": "254","role": "STUDENT"}
+{"userName": "Nikolai Stopka","password": "698","role": "STUDENT"}

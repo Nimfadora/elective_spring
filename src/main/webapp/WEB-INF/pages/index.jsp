@@ -1,3 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<fmt:requestEncoding value="UTF-8" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +13,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Vollkorn&display=swap" rel="stylesheet">
@@ -22,13 +26,13 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="script.js"></script>
+  <script src="http://localhost:8080/resources/js/script.js"></script>
 
 
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="#">Elective</a>
+  <a class="navbar-brand" href="/">Elective</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -42,15 +46,15 @@
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Programming</a>
-          <a class="dropdown-item" href="#">Design</a>
-          <a class="dropdown-item" href="#">Math</a>
-          <a class="dropdown-item" href="#">Algorithms</a>
+          <a class="dropdown-item" href="/courses?category=Programming">Programming</a>
+          <a class="dropdown-item" href="/courses?category=Design">Design</a>
+          <a class="dropdown-item" href="/courses?category=Math">Math</a>
+          <a class="dropdown-item" href="/courses?category=Algorithms">Algorithms</a>
           <!--<div class="dropdown-divider"></div>-->
-          <a class="dropdown-item" href="#">Architecture</a>
-          <a class="dropdown-item" href="#">Business</a>
-          <a class="dropdown-item" href="#">Cloud Computing</a>
-          <a class="dropdown-item" href="#">Social Sciences</a>
+          <a class="dropdown-item" href="/courses?category=Architecture">Architecture</a>
+          <a class="dropdown-item" href="/courses?category=Business">Business</a>
+          <a class="dropdown-item" href="/courses?category=Cloud Computing">Cloud Computing</a>
+          <a class="dropdown-item" href="/courses?category=Social Sciences">Social Sciences</a>
         </div>
       </li>
     </ul>
