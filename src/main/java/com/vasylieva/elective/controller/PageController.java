@@ -27,4 +27,9 @@ public class PageController {
         model.addAttribute("courses", courseService.getCoursesByCategory(category));
         return "courses";
     }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
