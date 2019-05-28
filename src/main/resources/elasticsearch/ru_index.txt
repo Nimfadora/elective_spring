@@ -1,0 +1,72 @@
+curl -X PUT "http://127.0.0.1:9200/ru/" -H 'Content-Type: application/json' -d'
+{
+  "settings": {
+      "analysis": {
+        "filter": {
+          "russian_stop": {
+            "type":       "stop",
+            "stopwords":  "_russian_"
+          },
+          "russian_keywords": {
+            "type":       "keyword_marker",
+            "keywords":   []
+          },
+          "russian_stemmer": {
+            "type":       "stemmer",
+            "language":   "russian"
+          }
+        },
+        "analyzer": {
+          "rebuilt_russian": {
+            "tokenizer":  "standard",
+            "filter": [
+              "lowercase",
+              "russian_stop",
+              "russian_keywords",
+              "russian_stemmer"
+            ]
+          }
+        }
+      }
+  },
+  "mappings": {
+       "properties": {
+          "id": {
+            "type": "long"
+          },
+          "author": {
+            "type": "text"
+          },
+          "title": {
+            "type": "text"
+          },
+          "description": {
+            "type": "text"
+          },
+          "category": {
+            "type": "text"
+          },
+          "level": {
+            "type": "keyword"
+          },
+          "rating": {
+            "type": "double"
+          },
+          "reviews": {
+            "type": "long"
+          },
+          "studentsRegistered": {
+            "type": "long"
+          },
+          "durationHours": {
+            "type": "double"
+          },
+          "imgUrl": {
+            "type": "keyword"
+          },
+          "courseStatus": {
+            "type": "keyword"
+          }
+       }
+  }
+}'

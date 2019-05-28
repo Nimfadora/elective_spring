@@ -130,7 +130,7 @@
         <c:forEach var="course" items="${courses}">
             <div class="col-md-4 course-data mx-auto">
                 <div class="course-item text-center">
-                    <p><c:out value="${course.name}"/></p>
+                    <p><c:out value="${course.title}"/></p>
                     <hr>
                     <div class="course-card">
                         <img alt="" src="<c:out value="${course.imgUrl}"/>">

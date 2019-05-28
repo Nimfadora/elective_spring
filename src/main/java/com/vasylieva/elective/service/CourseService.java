@@ -1,29 +1,39 @@
 package com.vasylieva.elective.service;
 
-import com.vasylieva.elective.model.Course;
-import com.vasylieva.elective.model.CourseStatus;
-import com.vasylieva.elective.model.Role;
-import com.vasylieva.elective.model.User;
+import com.vasylieva.elective.model.*;
 import com.vasylieva.elective.repository.CourseRepository;
 import org.apache.commons.lang3.tuple.Pair;
+import org.elasticsearch.search.sort.SortBuilder;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class CourseService {
 
+    private static final int PAGE_SIZE = 10;
+
     private final CourseRepository courseRepository;
+    private final ElasticsearchService elasticsearchService;
 
     @Autowired
-    public CourseService(CourseRepository courseRepository) {
+    public CourseService(CourseRepository courseRepository, ElasticsearchService elasticsearchService) {
         this.courseRepository = courseRepository;
+        this.elasticsearchService = elasticsearchService;
     }
 
+    @Transactional
     public Course createCourse(Course course) {
-        return courseRepository.save(course);
+        Course savedCourse = courseRepository.save(course);
+        savedCourse.getLanguages()
+                .forEach(lang -> elasticsearchService.indexCourse(lang, new CourseDocument(savedCourse)));
+        return savedCourse;
     }
 
     public Course updateCourse(Course course) {
@@ -39,9 +49,17 @@ public class CourseService {
         return courseRepository.findByCategory(category);
     }
 
-    public List<Course> getCourses(String skill, String level, String language, Pair<String, String> duration,
-                                   String sortBy, String sortOrder) {
-        return new ArrayList<>();
+    public List<CourseDocument> findCoursesWithFilters(String search, String lang, String skill, String level,
+                                                       String language, Pair<String, String> duration, String sortBy,
+                                                       String sortOrder, int page) {
+        SortBuilder sortBuilder = SortBuilders.fieldSort(sortBy).order(SortOrder.fromString(sortOrder));
+        Pageable pageable = PageRequest.of(page, PAGE_SIZE);
+        return elasticsearchService.findCourses(lang, search, skill, level, language, duration, sortBuilder, pageable);
+    }
+
+    public List<CourseDocument> findCourses(String search, String lang, int page) {
+        Pageable pageable = PageRequest.of(page, PAGE_SIZE);
+        return elasticsearchService.findCourses(lang, search, pageable);
     }
 
     public List<Course> getCoursesByUserAndStatus(User user, CourseStatus status) {

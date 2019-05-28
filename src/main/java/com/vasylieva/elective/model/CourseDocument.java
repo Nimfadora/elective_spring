@@ -1,31 +1,20 @@
 package com.vasylieva.elective.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vasylieva.elective.util.converter.SetJsonConverter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import javax.persistence.*;
+import javax.persistence.Id;
 import java.util.Set;
 
-@Entity
-@Table(name = "course")
-public class Course {
+@Document(indexName = "course")
+public class CourseDocument {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id", updatable = false)
-    @Fetch(FetchMode.JOIN)
-    private User author;
+    private String author;
 
     private String category;
     private String title;
-
-    @Column(length = 2000)
     private String description;
     private double rating;
     private long reviews;
@@ -35,31 +24,28 @@ public class Course {
     private String imgUrl;
     private String courseStatus;
 
-    @Convert(converter = SetJsonConverter.class)
     private Set<String> skills;
-    @Convert(converter = SetJsonConverter.class)
     private Set<String> languages;
 
     /* Only for JPA*/
-    public Course() {
+    public CourseDocument() {
     }
 
-    public Course(User author, String category, String title, String description, double rating, long reviews, long studentsRegistered,
-                  double durationHours, CourseLevel level, String imgUrl, Set<String> skills,
-                  Set<String> languages, String courseStatus) {
-        this.author = author;
-        this.category = category;
-        this.title = title;
-        this.description = description;
-        this.rating = rating;
-        this.reviews = reviews;
-        this.studentsRegistered = studentsRegistered;
-        this.durationHours = durationHours;
-        this.level = level;
-        this.imgUrl = imgUrl;
-        this.skills = skills;
-        this.languages = languages;
-        this.courseStatus = courseStatus;
+    public CourseDocument(Course course) {
+        this.id = course.getId();
+        this.author = course.getAuthor().getUserName();
+        this.category = course.getCategory();
+        this.title = course.getTitle();
+        this.description = course.getDescription();
+        this.rating = course.getRating();
+        this.reviews = course.getReviews();
+        this.studentsRegistered = course.getStudentsRegistered();
+        this.durationHours = course.getDurationHours();
+        this.level = course.getLevel();
+        this.imgUrl = course.getImgUrl();
+        this.skills = course.getSkills();
+        this.languages = course.getLanguages();
+        this.courseStatus = course.getCourseStatus();
     }
 
     public String getCategory() {
@@ -70,11 +56,11 @@ public class Course {
         this.category = category;
     }
 
-    public User getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
