@@ -9,7 +9,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../../resources/static/css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Vollkorn&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="../../js/script.js"></script>
+    <script src="../../../resources/static/js/script.js"></script>
 
 
 </head>
@@ -41,7 +41,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Categories
+                    Категорії
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Programming</a>
@@ -55,13 +55,10 @@
                     <a class="dropdown-item" href="#">Social Sciences</a>
                 </div>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">My Courses</a>
-            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <div class="input-group">
-                <input type="search" class="form-control py-0 px-0" placeholder="Search">
+                <input type="search" class="form-control py-0 px-0" placeholder="Пошук">
                 <div class="input-group-btn">
                     <button class="btn btn-dark" type="submit">
                         <i class="glyphicon glyphicon-search"></i>
@@ -69,17 +66,36 @@
                 </div>
             </div>
         </form>
-        <button class="btn btn-outline-primary mx-2">Login</button>
-        <button class="btn btn-outline-primary mx-2">Signup</button>
+        <div id="lang" class="px-3">
+            <a href="#">ua</a>
+            <select name="langs" style="display: none;">
+                <option value="en">en</option>
+                <option value="ua" selected>ua</option>
+                <option value="ru">ru</option>
+            </select>
+        </div>
+        <div class="dropdown px-3">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-user"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                <a class="dropdown-item" href="#">Профіль</a>
+                <a class="dropdown-item" href="#">Мої курси</a>
+                <a class="dropdown-item" href="#">Вихід</a>
+            </div>
+        </div>
+        <!--<button class="btn btn-outline-info mx-2">Login</button>-->
+        <!--<button class="btn btn-outline-info mx-2">Signup</button>-->
     </div>
 </nav>
 
 <div class="col-md-12 menu-tabs">
     <hr>
     <div class="row text-center">
-        <div class="col-md mx-auto menu-tab active"><a class="nav-link" href="#">Активные</a></div>
+        <div class="col-md mx-auto menu-tab"><a class="nav-link" href="#">Активні</a></div>
         <div class="col-md mx-auto menu-tab"><a class="nav-link" href="#">Закладки</a></div>
-        <div class="col-md mx-auto menu-tab"><a class="nav-link" href="#">Архив</a></div>
+        <div class="col-md mx-auto menu-tab active"><a class="nav-link" href="#">Архів</a></div>
     </div>
 </div>
 
@@ -88,7 +104,7 @@
     <div class="row text-center">
         <div class="col-md-4 course-data mx-auto">
             <div class="course-item text-center">
-                <p>JavaScript для начинающих</p>
+                <p>JavaScript для починаючих</p>
                 <hr>
                 <div class="course-card">
                     <img alt="" src="https://i.udemycdn.com/course/240x135/1901422_8f67_3.jpg">
@@ -116,22 +132,23 @@
                     </div>
                     <div class="course-meta">
                         <span>4.4 (8)</span>
-                        <span>8ч</span>
-                        <span>Начинающий</span>
+                        <span>8г</span>
+                        <span>ПОЧИНАЮЧИЙ</span>
                     </div>
-                    <div class="student-buttons">
-                        <button class="btn btn-outline-danger mx-2">Покинуть курс</button>
-                        <button class="btn btn-outline-warning mx-2">В Архив</button>
-                    </div>
+
+                </div>
+                <div class="student-buttons text-center">
+                    <button class="btn btn-outline-info ">Написати відгук</button>
+                    <!--                        <button class="btn btn-outline-warning mx-2">В Архів</button>-->
                 </div>
             </div>
         </div>
         <div class="col-md-4 course-data mx-auto">
             <div class="course-item text-center">
-                <p>JavaScript. Продвинутый курс.</p>
+                <p>Фінанси, практичний курс</p>
                 <hr>
                 <div class="course-card">
-                    <img alt="" src="https://i.udemycdn.com/course/240x135/1910004_07ae_3.jpg">
+                    <img alt="" src="https://i.udemycdn.com/course/240x135/32908_4e19_6.jpg">
                 </div>
                 <div class="course-info">
                     <div class="star-raiting">
@@ -156,53 +173,14 @@
                     </div>
                     <div class="course-meta">
                         <span>4.6 (8)</span>
-                        <span>12ч</span>
-                        <span>Средний</span>
+                        <span>12г</span>
+                        <span>СЕРЕДНІЙ</span>
                     </div>
-                    <div class="student-buttons">
-                        <button class="btn btn-outline-danger mx-2">Покинуть курс</button>
-                        <button class="btn btn-outline-warning mx-2">В Архив</button>
-                    </div>
+
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4 course-data mx-auto">
-            <div class="course-item text-center">
-                <p>Современный JavaScript с самого начала</p>
-                <hr>
-                <div class="course-card">
-                    <img alt="" src="https://i.udemycdn.com/course/240x135/1463348_52a4.jpg">
-                </div>
-                <div class="course-info">
-                    <div class="star-raiting">
-                    <span class="score">
-                        <div class="score-wrap">
-                            <span class="stars-active" style="width:64%">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </span>
-                            <span class="stars-inactive">
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </span>
-                    </div>
-                    <div class="course-meta">
-                        <span>3.2 (8)</span>
-                        <span>5ч</span>
-                        <span>Начинающий</span>
-                    </div>
-                    <div class="student-buttons">
-                        <button class="btn btn-outline-danger mx-2">Покинуть курс</button>
-                        <button class="btn btn-outline-warning mx-2">В Архив</button>
-                    </div>
+                <div class="student-buttons text-center">
+                    <button class="btn btn-outline-success mx-2">Продовжити навчання</button>
+                    <!--                        <button class="btn btn-outline-warning mx-2">В Архів</button>-->
                 </div>
             </div>
         </div>

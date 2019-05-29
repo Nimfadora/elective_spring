@@ -2,7 +2,7 @@
 <!--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>-->
 <!--<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>-->
 <!--<%&#45;&#45;<%@ page language="java" contentType="text/html; charset=ISO-8859-1"&#45;&#45;%>-->
-         <!--<%&#45;&#45;pageEncoding="ISO-8859-1"%>&#45;&#45;%>-->
+<!--<%&#45;&#45;pageEncoding="ISO-8859-1"%>&#45;&#45;%>-->
 <!--<fmt:requestEncoding value="UTF-8" />-->
 <!--<fmt:setLocale value="ru_RU" scope="session"/>-->
 <!--<fmt:setBundle basename="i18n.locale" var="lang"/>-->
@@ -13,97 +13,99 @@
     <meta charset="UTF-8">
 
 
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../../resources/static/css/login.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Vollkorn&display=swap" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../resources/static/css/login.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn&display=swap" rel="stylesheet">
 
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-  <!-- Popper JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <!--<script src="/static/js/script.js"></script>-->
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--<script src="/static/js/script.js"></script>-->
 
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-			<div class="col-md-10 mx-auto">
-			<div id="first">
-				<div class="myform form ">
-					 <div class="logo mb-3">
-						 <div class="col-md-12 text-center">
-							<h1>Course Review</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div id="first">
+                <div class="myform form ">
+                    <div class="logo mb-3">
+                        <div class="col-md-12 text-center">
+                            <h1>Course Review</h1>
 
-						 </div>
-					</div>
-          <p>Please respond to several questions about the course that you have passed: <a href="#" >"Accelerated JavaScript Training"</a></p>
+                        </div>
+                    </div>
+                    <p>Please respond to several questions about the course that you have passed: <a href="#">"Accelerated
+                        JavaScript Training"</a></p>
 
-                   <form action="" method="post" name="questionaire">
-                     <div class="form-group">
-                        <label for="q1">What skills have you gained during this course?</label>
-                       <textarea type="text" name="q1" class="form-control" id="q1"></textarea>
-                     </div>
-                     <div class="form-group">
-                       <label for="q2">Have you get a promotion after completing this course?</label>
-                       <textarea name="q2" class="form-control" id="q2"></textarea>
-                     </div>
-                     <div class="form-group">
-                       <label for="q3">Have you get a payment increase after completing this course?</label>
-                       <textarea type="text" name="q3" class="form-control" id="q3"></textarea>
-                     </div>
-                     <div class="form-group">
-                       <label for="q4">What do you love the most about this course?</label>
-                       <textarea type="text" name="q4" class="form-control" id="q4"></textarea>
-                     </div>
-                     <div class="form-group">
-                       <label for="q5">Is there anything that you want to improve in this course?</label>
-                       <textarea type="text" name="q5" class="form-control" id="q5"></textarea>
-                     </div>
-                     <div class="form-group">
-                       <label for="q6">Add your feedback</label>
-                       <textarea type="text" name="q6" class="form-control" id="q6"></textarea>
-                     </div>
-                     <div class="form-group stars">
-                       <div><label for="q5">How will you rate this course?</label></div>
-                       <div id="reviewStars-input">
-                         <input id="star-4" type="radio" name="reviewStars"/>
-                         <label title="gorgeous" for="star-4"></label>
+                    <form action="" method="post" name="questionaire">
+                        <div class="form-group">
+                            <label for="q1">What skills have you gained during this course?</label>
+                            <textarea type="text" name="q1" class="form-control" id="q1"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="q2">Have you get a promotion after completing this course?</label>
+                            <textarea name="q2" class="form-control" id="q2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="q3">Have you get a payment increase after completing this course?</label>
+                            <textarea type="text" name="q3" class="form-control" id="q3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="q4">What do you love the most about this course?</label>
+                            <textarea type="text" name="q4" class="form-control" id="q4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="q5">Is there anything that you want to improve in this course?</label>
+                            <textarea type="text" name="q5" class="form-control" id="q5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="q6">Add your feedback</label>
+                            <textarea type="text" name="q6" class="form-control" id="q6"></textarea>
+                        </div>
+                        <div class="form-group stars">
+                            <div><label for="q5">How will you rate this course?</label></div>
+                            <div id="reviewStars-input">
+                                <input id="star-4" type="radio" name="reviewStars"/>
+                                <label title="gorgeous" for="star-4"></label>
 
-                         <input id="star-3" type="radio" name="reviewStars"/>
-                         <label title="good" for="star-3"></label>
+                                <input id="star-3" type="radio" name="reviewStars"/>
+                                <label title="good" for="star-3"></label>
 
-                         <input id="star-2" type="radio" name="reviewStars"/>
-                         <label title="regular" for="star-2"></label>
+                                <input id="star-2" type="radio" name="reviewStars"/>
+                                <label title="regular" for="star-2"></label>
 
-                         <input id="star-1" type="radio" name="reviewStars"/>
-                         <label title="poor" for="star-1"></label>
+                                <input id="star-1" type="radio" name="reviewStars"/>
+                                <label title="poor" for="star-1"></label>
 
-                         <input id="star-0" type="radio" name="reviewStars"/>
-                         <label title="bad" for="star-0"></label>
-                       </div>
-                     </div>
+                                <input id="star-0" type="radio" name="reviewStars"/>
+                                <label title="bad" for="star-0"></label>
+                            </div>
+                        </div>
 
-                     <div class="col-md-12 text-center ">
-                        <button type="submit" class=" btn btn-outline-primary tx-tfm">Submit</button>
-                     </div>
-                        </form>
+                        <div class="col-md-12 text-center ">
+                            <button type="submit" class=" btn btn-outline-primary tx-tfm">Submit</button>
+                        </div>
+                    </form>
 
-				</div>
-			</div>
-		</div>
-      </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
 </body>
 </html>

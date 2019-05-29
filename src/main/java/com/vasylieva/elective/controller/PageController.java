@@ -1,11 +1,16 @@
 package com.vasylieva.elective.controller;
 
+import com.vasylieva.elective.model.Course;
 import com.vasylieva.elective.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class PageController {
@@ -18,7 +23,24 @@ public class PageController {
     }
 
     @RequestMapping("/")
-    public String index() {
+    public String index(Model model) {
+        List<Course> topRated =  courseService.getCoursesByCategory("Programming")
+                .stream()
+                .sorted(Comparator.comparing(Course::getRating).reversed())
+                .limit(3)
+                .collect(Collectors.toList());
+        List<Course> mostPopular =  courseService.getCoursesByCategory("Programming")
+                .stream()
+                .sorted(Comparator.comparing(Course::getStudentsRegistered).reversed())
+                .limit(3)
+                .collect(Collectors.toList());
+
+        List<Course> trending =  courseService.getCoursesByCategory("Programming").stream().limit(3).collect(Collectors.toList());
+
+        model.addAttribute("topCourses", topRated);
+        model.addAttribute("mostPopular", mostPopular);
+        model.addAttribute("trendingCourses", trending);
+
         return "index";
     }
 

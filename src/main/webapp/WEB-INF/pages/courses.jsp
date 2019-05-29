@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<fmt:requestEncoding value="UTF-8" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<fmt:requestEncoding value="UTF-8"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,21 +74,22 @@
         <button class="btn btn-outline-primary mx-2">Login</button>
         <button class="btn btn-outline-primary mx-2">Signup</button>
         <div id="lang" class="px-3">
-              <a href="#">en</a>
-              <select name="langs" style="display: none;">
+            <a href="#">en</a>
+            <select name="langs" style="display: none;">
                 <option value="en" selected>en</option>
                 <option value="ua">ua</option>
                 <option value="ru">ru</option>
-              </select>
-            </div>
+            </select>
+        </div>
         <div class="dropdown px-3">
-          <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="far fa-user"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-            <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="#">Log out</a>
-          </div>
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-user"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="#">Log out</a>
+            </div>
         </div>
         <!--<button class="btn btn-outline-info mx-2">Login</button>-->
         <!--<button class="btn btn-outline-info mx-2">Signup</button>-->
@@ -99,7 +100,7 @@
     <hr>
     <form>
         <div class="row extended-search-filters">
-           <span>Filter by:</span>
+            <span>Filter by:</span>
 
             <div class="col">
                 <select name="skill" class="form-control">
@@ -145,7 +146,7 @@
                     <option value="A-Z">A-Z</option>
                     <option value="Z-A">Z-A</option>
                 </select>
-             </div>
+            </div>
             <div class="form-check px-3">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" style="width: 16px; height: 16px;">
                 <label class="form-check-label" for="exampleCheck1">In moderation</label>
