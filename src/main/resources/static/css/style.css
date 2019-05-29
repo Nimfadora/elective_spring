@@ -1,5 +1,5 @@
 body {
-    font-size: 14px;
+    font-size: 2rem;
     font-family: 'Vollkorn', sans-serif;
 }
 
@@ -99,22 +99,26 @@ form.search_bar:hover .fa {
 }
 
 .extended-search select {
-    font-size: 14px !important;
+    font-size: 2rem !important;
+}
+
+.extended-search-filters {
+    margin: 1rem;
 }
 
 .submit-ex-search {
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .submit-ex-search button {
-    font-size: 14px !important;
+    font-size: 2rem !important;
 }
 
 /* course card */
 
 .course-data {
-    width: 38rem; /* or whatever width you want. */
-    max-width: 36rem; /* or whatever width you want. */
+    width: 40rem; /* or whatever width you want. */
+    max-width: 40rem; /* or whatever width you want. */
     display: inline-block;
     margin: 1rem;
 
@@ -131,12 +135,13 @@ form.search_bar:hover .fa {
 }
 
 .course-info {
-    width: 32rem;
+    width: 33rem;
     padding-top: 1rem;
     display: inline-block;
 }
 
 .course-meta span {
+    font-size: 1.3rem;
     display: block;
     float: left;
     padding: 0 0.5rem 0 0.5rem;
@@ -148,8 +153,8 @@ form.search_bar:hover .fa {
 }
 
 .course-card img {
-    width: 28rem;
-    height: 15rem;
+    width: 30rem;
+    height: 18rem;
     object-fit: cover;
 }
 
@@ -219,7 +224,7 @@ form.search_bar:hover .fa {
 }
 
 .student-buttons button {
-    font-size: 14px;
+    font-size: 2rem;
 }
 
 /* course page */

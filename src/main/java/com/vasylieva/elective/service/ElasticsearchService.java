@@ -19,15 +19,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
+import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
+
 @Service
 public class ElasticsearchService {
 
     private static final String[] FULL_TEXT_SEARCHFIELDS = new String[]{
-            "author", "category", "title", "description", "level", "skills"
+            "author", "category", "title", "description", "level", "skills", "reviews"
     };
 
     @Autowired
-    private ElasticsearchTemplate elasticsearchTemplate;
+    private ElasticsearchTemplate elasticsearchTemplate = null;
 
     public void indexCourse(String indexName, CourseDocument course) {
         IndexQuery indexQuery = new IndexQueryBuilder()
@@ -38,26 +41,37 @@ public class ElasticsearchService {
         elasticsearchTemplate.index(indexQuery);
     }
 
-    public List<CourseDocument> findCourses(String indexName, String searchString, Pageable pageable) {
-
-
+    public List<CourseDocument> findCourses(String indexName, String search,
+                                            SortBuilder sort, Pageable pageable) {
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
-                .withQuery(QueryBuilders.multiMatchQuery(searchString, FULL_TEXT_SEARCHFIELDS))
+                .withQuery(multiMatchQuery(search, FULL_TEXT_SEARCHFIELDS))
                 .withIndices(indexName)
+                .withSort(sort)
                 .withPageable(pageable)
                 .build();
         return elasticsearchTemplate.queryForList(searchQuery, CourseDocument.class);
     }
 
-    public List<CourseDocument> findCourses(String indexName, String searchString, String skill,
-                                            String level, String language, Pair<String, String> duration,
-                                            SortBuilder sortBuilder, Pageable pageable) {
+
+    public List<CourseDocument> findCourses(String indexName, String search,
+                                            String skill, String level,
+                                            String language,
+                                            Pair<Integer, Integer> duration,
+                                            SortBuilder sort, Pageable pageable) {
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
-                .withQuery(QueryBuilders.multiMatchQuery(searchString, FULL_TEXT_SEARCHFIELDS))
+                .withQuery(boolQuery()
+                        .must(multiMatchQuery(search, FULL_TEXT_SEARCHFIELDS))
+                        .must(QueryBuilders.termsQuery("skills", skill))
+                        .must(QueryBuilders.termQuery("level", level))
+                        .must(QueryBuilders.termsQuery("languages", language))
+                        .must(QueryBuilders.rangeQuery("duration")
+                                .gte(duration.getLeft())
+                                .lte(duration.getRight())))
                 .withIndices(indexName)
-                .withSort(sortBuilder)
+                .withSort(sort)
                 .withPageable(pageable)
                 .build();
         return elasticsearchTemplate.queryForList(searchQuery, CourseDocument.class);
     }
+
 }

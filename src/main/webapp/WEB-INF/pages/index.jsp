@@ -26,7 +26,7 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="http://localhost:8080/resources/js/script.js"></script>
+  <script src="http://localhost:8080/js/script.js"></script>
 
 
 </head>
@@ -68,8 +68,25 @@
         </div>
       </div>
     </form>
-    <button class="btn btn-outline-info mx-2">Login</button>
-    <button class="btn btn-outline-info mx-2">Signup</button>
+    <div id="lang" class="px-3">
+          <a href="#">en</a>
+          <select name="langs" style="display: none;">
+            <option value="en" selected>en</option>
+            <option value="ua">ua</option>
+            <option value="ru">ru</option>
+          </select>
+        </div>
+    <div class="dropdown px-3">
+      <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="far fa-user"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+        <a class="dropdown-item" href="#">Profile</a>
+        <a class="dropdown-item" href="#">Log out</a>
+      </div>
+    </div>
+    <!--<button class="btn btn-outline-info mx-2">Login</button>-->
+    <!--<button class="btn btn-outline-info mx-2">Signup</button>-->
   </div>
 </nav>
 

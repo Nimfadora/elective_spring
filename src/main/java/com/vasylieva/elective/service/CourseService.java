@@ -50,16 +50,18 @@ public class CourseService {
     }
 
     public List<CourseDocument> findCoursesWithFilters(String search, String lang, String skill, String level,
-                                                       String language, Pair<String, String> duration, String sortBy,
+                                                       String language, Pair<Integer, Integer> duration, String sortBy,
                                                        String sortOrder, int page) {
         SortBuilder sortBuilder = SortBuilders.fieldSort(sortBy).order(SortOrder.fromString(sortOrder));
         Pageable pageable = PageRequest.of(page, PAGE_SIZE);
         return elasticsearchService.findCourses(lang, search, skill, level, language, duration, sortBuilder, pageable);
     }
 
-    public List<CourseDocument> findCourses(String search, String lang, int page) {
+    public List<CourseDocument> findCourses(String search, String lang, String sortBy,
+                                            String sortOrder, int page) {
+        SortBuilder sortBuilder = SortBuilders.fieldSort(sortBy).order(SortOrder.fromString(sortOrder));
         Pageable pageable = PageRequest.of(page, PAGE_SIZE);
-        return elasticsearchService.findCourses(lang, search, pageable);
+        return elasticsearchService.findCourses(lang, search, sortBuilder, pageable);
     }
 
     public List<Course> getCoursesByUserAndStatus(User user, CourseStatus status) {

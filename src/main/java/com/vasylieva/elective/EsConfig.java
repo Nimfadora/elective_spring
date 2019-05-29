@@ -24,8 +24,8 @@ public class EsConfig {
 //    @Value("${elasticsearch.port}")
 //    private int port;
 //
-////    @Value("${elasticsearch.clustername}")
-////    private String clusterName;
+//    @Value("${elasticsearch.clustername}")
+//    private String clusterName;
 //
 //    @Bean
 //    public Client client() throws Exception {

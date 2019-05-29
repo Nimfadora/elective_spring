@@ -29,7 +29,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="/js/script.js"></script>
+    <script src="http://localhost:8080/js/script.js"></script>
 
 
 </head>
@@ -73,13 +73,34 @@
         </form>
         <button class="btn btn-outline-primary mx-2">Login</button>
         <button class="btn btn-outline-primary mx-2">Signup</button>
+        <div id="lang" class="px-3">
+              <a href="#">en</a>
+              <select name="langs" style="display: none;">
+                <option value="en" selected>en</option>
+                <option value="ua">ua</option>
+                <option value="ru">ru</option>
+              </select>
+            </div>
+        <div class="dropdown px-3">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-user"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="#">Log out</a>
+          </div>
+        </div>
+        <!--<button class="btn btn-outline-info mx-2">Login</button>-->
+        <!--<button class="btn btn-outline-info mx-2">Signup</button>-->
     </div>
 </nav>
 
 <div class="col-md-12 extended-search">
     <hr>
     <form>
-        <div class="row">
+        <div class="row extended-search-filters">
+           <span>Filter by:</span>
+
             <div class="col">
                 <select name="skill" class="form-control">
                     <option value="not_selected">Skill</option>
@@ -115,6 +136,19 @@
                     <option value="8-16">7-12h</option>
                     <option value="17+">17+h</option>
                 </select>
+            </div>
+            <span>Sort by:</span>
+            <div class="col">
+                <select name="duration" class="form-control">
+                    <option value="popular">popular</option>
+                    <option value="rating">rating</option>
+                    <option value="A-Z">A-Z</option>
+                    <option value="Z-A">Z-A</option>
+                </select>
+             </div>
+            <div class="form-check px-3">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" style="width: 16px; height: 16px;">
+                <label class="form-check-label" for="exampleCheck1">In moderation</label>
             </div>
         </div>
         <div class="row ">
@@ -158,7 +192,7 @@
                         </div>
                         <div class="course-meta">
                             <span><c:out value="${course.rating}"/> (<c:out value="${course.reviews}"/>)</span>
-                            <span><c:out value="${course.durationHours}"/>ч</span>
+                            <span><c:out value="${course.durationHours}"/>h</span>
                             <span><c:out value="${course.level}"/></span>
                         </div>
                     </div>
