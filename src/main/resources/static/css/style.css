@@ -247,3 +247,66 @@ form.search_bar:hover .fa {
 .course-page-content button {
     font-size: 16px !important;
 }
+
+/* course creation */
+
+.course-create {
+    margin-top: 60px;
+    font-size: 2rem;
+}
+
+.tab-content input, .tab-content select, .tab-content textarea, .course-submit button, .course-q-add button{
+    font-size: 2rem;
+    font-family: 'Vollkorn', sans-serif;
+}
+
+.form-check {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+/* course description */
+
+.course-header img {
+    width: 100rem;
+    height: 18rem;
+    object-fit: contain;
+}
+
+.course-skillbox h2 {
+    display: inline-block;
+}
+
+.course-skillbox span {
+    display: inline-block;
+    height:2.875rem;
+    border-radius:0.5rem;
+    line-height:2.5rem;
+    font-size:1.875rem;
+}
+
+.course-desc-card {
+    margin-top: 10rem;
+}
+
+.course-desc-card .fa {
+    font-size: 2rem !important;
+}
+
+.course-time i{
+    font-size: 3rem;
+    color: #28a745;
+}
+
+.course-time span {
+    font-size: 3rem;
+}
+
+.course-heading {
+    font-size: 3rem;
+}

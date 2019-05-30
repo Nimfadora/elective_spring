@@ -9,7 +9,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../../resources/static/css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Vollkorn&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="../../js/script.js"></script>
+    <script src="../../../resources/static/js/script.js"></script>
 
 
 </head>
@@ -44,16 +44,19 @@
                     Categories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Programming</a>
-                    <a class="dropdown-item" href="#">Design</a>
-                    <a class="dropdown-item" href="#">Math</a>
-                    <a class="dropdown-item" href="#">Algorithms</a>
+                    <a class="dropdown-item" href="/courses?category=Programming">Programming</a>
+                    <a class="dropdown-item" href="/courses?category=Design">Design</a>
+                    <a class="dropdown-item" href="/courses?category=Math">Math</a>
+                    <a class="dropdown-item" href="/courses?category=Algorithms">Algorithms</a>
                     <!--<div class="dropdown-divider"></div>-->
-                    <a class="dropdown-item" href="#">Architecture</a>
-                    <a class="dropdown-item" href="#">Business</a>
-                    <a class="dropdown-item" href="#">Cloud Computing</a>
-                    <a class="dropdown-item" href="#">Social Sciences</a>
+                    <a class="dropdown-item" href="/courses?category=Architecture">Architecture</a>
+                    <a class="dropdown-item" href="/courses?category=Business">Business</a>
+                    <a class="dropdown-item" href="/courses?category=Cloud Computing">Cloud Computing</a>
+                    <a class="dropdown-item" href="/courses?category=Social Sciences">Social Sciences</a>
                 </div>
+            </li>
+            <li class="nav-item">
+<!--                <button class="btn btn-outline-info mx-2">Create course</button>-->
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -66,15 +69,38 @@
                 </div>
             </div>
         </form>
-        <button class="btn btn-outline-primary mx-2">Login</button>
-        <button class="btn btn-outline-primary mx-2">Signup</button>
+        <div id="lang" class="px-3">
+            <a href="#">en</a>
+            <select name="langs" style="display: none;">
+                <option value="en" selected>en</option>
+                <option value="ua">ua</option>
+                <option value="ru">ru</option>
+            </select>
+        </div>
+        <div class="dropdown px-3">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-user"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="#">My courses</a>
+                <a class="dropdown-item" href="#">Log out</a>
+            </div>
+        </div>
+        <!--<button class="btn btn-outline-info mx-2">Login</button>-->
+        <!--<button class="btn btn-outline-info mx-2">Signup</button>-->
     </div>
 </nav>
 
 <div class="container course-page-content">
+    <div class="row course-header">
+        <img src="https://i.udemycdn.com/course/240x135/1910004_07ae_3.jpg">
+    </div>
+
     <div class="row">
         <div class="col-lg-8">
-            <h1>Описание курса</h1>
+            <h1>JavaScript. Advanced Course</h1>
             <div class="desc-text desc-short" id="course-desc">
                 In only three hours you will learn enough javascript to transform from a junior javascript developer
                 into a senior javascript guru.
@@ -116,150 +142,180 @@
                 Also it's FUN, what's more satisfying than learning something, then passing a test!
             </div>
             <div class="desc-sizing">
-                <button id="show_all" class="btn btn-outline-primary">Показать все</button>
+                <button id="show_all" class="btn btn-outline-primary">Show more</button>
             </div>
+            <hr/>
             <div class="course-skills">
-                <h3>Приобретаемые навыки</h3>
-                <div class="course-skillbox" data-reactid="385"><span
-                        class="Pill_56iw91 m-r-1s m-b-1s"
-                        style="height:1.875rem;border-radius:1.875rem;line-height:1.5rem;font-size:0.875rem;background-color:#EBECED;"
-                        data-reactid="386"><span class="centerContent_dqfu5r" data-reactid="387"><span class=""
-                                                                                                       data-reactid="388">Psychology</span></span></span><span
-                        class="Pill_56iw91 m-r-1s m-b-1s"
-                        style="height:1.875rem;border-radius:1.875rem;line-height:1.5rem;font-size:0.875rem;background-color:#EBECED;"
-                        data-reactid="389"><span class="centerContent_dqfu5r" data-reactid="390"><span class=""
-                                                                                                       data-reactid="391">Marketing</span></span></span><span
-                        class="Pill_56iw91 m-r-1s m-b-1s"
-                        style="height:1.875rem;border-radius:1.875rem;line-height:1.5rem;font-size:0.875rem;background-color:#EBECED;"
-                        data-reactid="392"><span class="centerContent_dqfu5r" data-reactid="393"><span class=""
-                                                                                                       data-reactid="394">Game Design</span></span></span><span
-                        class="Pill_56iw91 m-r-1s m-b-1s"
-                        style="height:1.875rem;border-radius:1.875rem;line-height:1.5rem;font-size:0.875rem;background-color:#EBECED;"
-                        data-reactid="395"><span class="centerContent_dqfu5r" data-reactid="396"><span class=""
-                                                                                                       data-reactid="397">Gamification</span></span></span>
+                <div class="course-skillbox my-2">
+                    <h2>Skills gained:</h2>
+                    <span class="mx-2 px-2 border border-primary">JavaScript</span>
+                    <span class="mx-2 px-2 border border-primary">ES5</span>
+                    <span class="mx-2 px-2 border border-primary">JavaScript Guru</span>
+                    <span class="mx-2 px-2 border border-primary">OOP</span>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="Col_i9j08c-o_O-xsCol12_1m1ceo5-o_O-lgCol4_e566tt hideOnSmall_143z63n p-l-2" data-reactid="398">
-                <div class="ProductGlance" data-reactid="399">
-                    <div class="Box_120drhm-o_O-displayflex_poyjc m-b-2 p-t-1s" data-reactid="400">
-                        <div class="circleStyle_v5k581 m-x-1s m-b-1s m-r-1" data-reactid="401">
-                            <svg aria-hidden="true" class="SvgIcon_8wfvj4" style="fill:#01256E;height:20px;width:20px;"
-                                 viewBox="0 0 48 48" role="img"
-                                 aria-labelledby="100%онлайн746fa2c0-9cc6-4115-82a2-40acda865d63 100%онлайн746fa2c0-9cc6-4115-82a2-40acda865d63Desc"
-                                 xmlns="http://www.w3.org/2000/svg" data-reactid="402"><title
-                                    id="100%онлайн746fa2c0-9cc6-4115-82a2-40acda865d63" data-reactid="403">100%
-                                онлайн</title>
-                                <path d="M29.144,2.6074 C30.868,4.5654 32.31,7.5324 33.322,11.1824 C36.407,10.4934 38.17,9.4914 39.698,8.6014 C36.855,5.7034 33.218,3.5864 29.144,2.6074 L29.144,2.6074 Z M8.239,8.6654 C9.691,9.5474 11.656,10.5824 15.059,11.2674 C16.093,7.5044 17.581,4.4624 19.364,2.4914 C15.054,3.4194 11.208,5.6144 8.239,8.6654 L8.239,8.6654 Z M17.026,11.5984 C18.939,11.8624 21.228,12.0234 24,12.0234 C27.009,12.0234 29.408,11.8414 31.364,11.5454 C29.704,5.6564 26.962,2.1054 24.321,2.0024 C24.263,2.0014 24.206,2.0014 24.148,2.0004 C21.478,2.0484 18.698,5.6304 17.026,11.5984 L17.026,11.5984 Z M2.022,23.0004 L13.482,23.0004 C13.543,19.4734 13.93,16.1644 14.579,13.2154 C10.664,12.4204 8.499,11.1834 6.891,10.1844 C4.03,13.7214 2.24,18.1604 2.022,23.0004 L2.022,23.0004 Z M15.482,23.0004 L32.923,23.0004 C32.861,19.4734 32.472,16.2744 31.855,13.4984 C29.767,13.8234 27.209,14.0234 24,14.0234 C21.035,14.0234 18.585,13.8444 16.538,13.5524 C15.928,16.3154 15.543,19.4964 15.482,23.0004 L15.482,23.0004 Z M34.923,23.0004 L45.977,23.0004 C45.758,18.1314 43.95,13.6704 41.06,10.1234 C40.978,10.1704 40.896,10.2184 40.813,10.2664 C39.129,11.2484 37.204,12.3704 33.808,13.1304 C34.467,16.1004 34.861,19.4394 34.923,23.0004 L34.923,23.0004 Z M23.915,33.4534 C27.147,33.4534 29.78,33.6774 31.956,34.0364 C32.515,31.3704 32.864,28.3324 32.923,25.0004 L15.482,25.0004 C15.54,28.2944 15.883,31.3024 16.431,33.9474 C18.471,33.6414 20.922,33.4534 23.915,33.4534 L23.915,33.4534 Z M2.022,25.0004 C2.233,29.6894 3.92,34.0034 6.627,37.4834 C6.703,37.4394 6.78,37.3944 6.858,37.3494 C8.586,36.3414 10.707,35.1064 14.475,34.3004 C13.889,31.4754 13.54,28.3354 13.482,25.0004 L2.022,25.0004 Z M33.905,34.4184 C37.597,35.2674 39.727,36.5214 41.338,37.5274 C44.065,34.0394 45.766,29.7094 45.977,25.0004 L34.923,25.0004 C34.864,28.3824 34.506,31.5634 33.905,34.4184 L33.905,34.4184 Z M33.443,36.3704 C32.426,40.2264 30.938,43.3554 29.144,45.3924 C33.373,44.3754 37.132,42.1334 40.02,39.0634 C38.571,38.1704 36.649,37.1104 33.443,36.3704 L33.443,36.3704 Z M7.947,39.0284 C10.955,42.2394 14.911,44.5494 19.364,45.5084 C17.504,43.4524 15.965,40.2294 14.927,36.2404 C11.531,36.9614 9.609,38.0614 7.947,39.0284 L7.947,39.0284 Z M16.888,35.8944 C18.541,42.1664 21.404,45.9494 24.148,45.9994 C24.206,45.9994 24.263,45.9984 24.321,45.9974 C27.031,45.8924 29.847,42.1574 31.492,35.9904 C29.446,35.6594 26.966,35.4534 23.915,35.4534 C21.091,35.4534 18.793,35.6194 16.888,35.8944 L16.888,35.8944 Z M24.203,48.0004 L24,48.0004 C10.767,48.0004 0,37.2334 0,24.0004 C0,10.7664 10.767,0.0004 24,0.0004 L24.203,0.0004 C24.26,0.0004 24.317,0.0014 24.375,0.0034 C37.436,0.2044 48,10.8914 48,24.0004 C48,37.1084 37.436,47.7954 24.375,47.9974 C24.317,47.9994 24.26,48.0004 24.203,48.0004 L24.203,48.0004 Z"
-                                      role="presentation" data-reactid="404"></path>
-                            </svg>
+        <div class="col-lg-4 course-desc-card">
+            <button class="btn btn-outline-danger mx-3">Moderate</button>
+
+            <div class="star-raiting my-4">
+                    <span class="score">
+                        <div class="score-wrap">
+                            <span class="stars-active" style="width:88%">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </span>
+                            <span class="stars-inactive">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </span>
                         </div>
-                        <div class="Box_120drhm-o_O-displayflex_poyjc-o_O-columnDirection_ia4371" data-reactid="405"><h4
-                                class="H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2 m-b-0" data-reactid="406">100%
-                            онлайн</h4>
-                            <div class="font-sm text-secondary" data-reactid="407">Начните сейчас и учитесь по
-                                собственному графику.
-                            </div>
+                    </span>
+            </div>
+            <span>4.7 (8)</span>
+            <div class="my-3 mx-3">
+                <span class="border border-success px-2">INTERMEDIATE</span>
+            </div>
+            <div class="my-3 mx-3 course-time">
+                <i class="far fa-clock"></i>
+                <span>12h</span>
+            </div>
+            <div class="my-3 mx-3 course-time">
+                <i class="far fa-comments"></i>
+                <span>Українська</span>
+            </div>
+            <div class="my-3 mx-3 course-time">
+                <i class="far fa-comments"></i>
+                <span>English</span>
+            </div>
+            <div class="my-3 mx-3 course-time">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Oleksandr Fomenko</span>
+            </div>
+            <div class="my-3 mx-3 course-time">
+                <i class="far fa-building"></i>
+                <span>MIT</span>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div>
+                <span class="course-heading">Top reviews</span>
+            </div>
+
+
+            <div class="col-lg-12 mx-auto my-3">
+                <div class="course-item">
+                    <p>Marina Polyvaiko</p>
+                    <hr/>
+                    <span>
+                        I'm very happy with this course because it does exactly what it said on the box: Asim is obviously a real tech pro and a good teacher - he explains things clearly and gets (and keeps) your attention! The course content is also very good - of the highest importance, relatively short and sharp and exposes you to stuff which other courses (at least the ones that I've come across) don't (i.e. potential interview traps). I also like the quizzes and how he's improved my use of Chrome devtools! :O)
+                    </span>
+                    <hr>
+                    <div class="">
+                        <div class="star-raiting">
+                            <span class="score">
+                                <div class="score-wrap">
+                                    <span class="stars-active" style="width:96%">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="stars-inactive">
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </span>
                         </div>
-                    </div>
-                    <div class="Box_120drhm-o_O-displayflex_poyjc m-b-2 p-t-1s" data-reactid="408">
-                        <div class="circleStyle_v5k581 m-x-1s m-b-1s m-r-1" data-reactid="409">
-                            <svg aria-hidden="true" class="SvgIcon_8wfvj4" style="fill:#01256E;height:20px;width:20px;"
-                                 viewBox="0 0 48 48" role="img"
-                                 aria-labelledby="Гибкиесрокиe6b8903f-704a-4ce7-a1e2-9ddf0320f151 Гибкиесрокиe6b8903f-704a-4ce7-a1e2-9ddf0320f151Desc"
-                                 xmlns="http://www.w3.org/2000/svg" data-reactid="410"><title
-                                    id="Гибкиесрокиe6b8903f-704a-4ce7-a1e2-9ddf0320f151" data-reactid="411">Гибкие
-                                сроки</title>
-                                <g stroke="none" stroke-width="1" fill-rule="evenodd" role="presentation"
-                                   data-reactid="412">
-                                    <g fill-rule="nonzero" data-reactid="413">
-                                        <g data-reactid="414">
-                                            <path d="M0,0 L48,0 L48,37 C48,43.0751322 43.0751322,48 37,48 L11,48 C4.92486775,48 0,43.0751322 0,37 L0,0 Z M46,37 L46,2 L2,2 L2,37 C2,41.9705627 6.02943725,46 11,46 L37,46 C41.9705627,46 46,41.9705627 46,37 Z M10,8 L38,8 L38,10 L10,10 L10,8 Z M34,17 L38,17 L38,21 L34,21 L34,17 Z M26,17 L30,17 L30,21 L26,21 L26,17 Z M18,17 L22,17 L22,21 L18,21 L18,17 Z M34,25 L38,25 L38,29 L34,29 L34,25 Z M26,25 L30,25 L30,29 L26,29 L26,25 Z M18,25 L22,25 L22,29 L18,29 L18,25 Z M10,25 L14,25 L14,29 L10,29 L10,25 Z M26,33 L30,33 L30,37 L26,37 L26,33 Z M18,33 L22,33 L22,37 L18,37 L18,33 Z M10,33 L14,33 L14,37 L10,37 L10,33 Z"
-                                                  data-reactid="415"></path>
-                                        </g>
-                                    </g>
-                                </g>
-                            </svg>
-                        </div>
-                        <div class="Box_120drhm-o_O-displayflex_poyjc-o_O-columnDirection_ia4371" data-reactid="416"><h4
-                                class="H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2 m-b-0" data-reactid="417">
-                            Гибкие сроки</h4>
-                            <div class="font-sm text-secondary" data-reactid="418">Назначьте сроки сдачи в соответствии
-                                со своим графиком.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Box_120drhm-o_O-displayflex_poyjc m-b-2 p-t-1s" data-reactid="419">
-                        <div class="circleStyle_v5k581 m-x-1s m-b-1s m-r-1" data-reactid="420">
-                            <svg aria-hidden="true" class="SvgIcon_8wfvj4" style="fill:#01256E;height:20px;width:20px;"
-                                 viewBox="0 0 48 48" role="img"
-                                 aria-labelledby="Часовназавершениеb3640100-0a3f-4be4-9f56-2977c341786e Часовназавершениеb3640100-0a3f-4be4-9f56-2977c341786eDesc"
-                                 xmlns="http://www.w3.org/2000/svg" data-reactid="421"><title
-                                    id="Часовназавершениеb3640100-0a3f-4be4-9f56-2977c341786e" data-reactid="422">Часов
-                                на завершение</title>
-                                <path d="M24 47C11.318375 47 1 36.681625 1 24S11.318375 1 24 1s23 10.318375 23 23-10.318375 23-23 23zM2.91666667 24c0 11.6255417 9.45779163 21.0833333 21.08333333 21.0833333S45.0833333 35.6255417 45.0833333 24 35.6255417 2.91666667 24 2.91666667 2.91666667 12.3744583 2.91666667 24zm19.12500003 1.9166667V6.70833333h2.9166666V23H35.5v2.9166667H22.0416667z"
-                                      role="presentation" data-reactid="423"></path>
-                            </svg>
-                        </div>
-                        <div class="Box_120drhm-o_O-displayflex_poyjc-o_O-columnDirection_ia4371" data-reactid="424"><h4
-                                class="H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2 m-b-0" data-reactid="425"><span
-                                data-reactid="426">Прибл. 29 часов на выполнение</span></h4>
-                            <div class="font-sm text-secondary" data-reactid="427">
-                                <div data-reactid="428"><span data-reactid="429"><span data-reactid="430"><span>Предполагаемая нагрузка: 4-8</span><br><span>hours/week</span></span><span
-                                        style="position:fixed;visibility:hidden;top:0;left:0;" data-reactid="433"><span
-                                        class="text-uppercase font-sm bold" data-reactid="434"><!-- react-text: 435 -->...
-                                    <!-- /react-text --><!-- react-text: 436 --> <!-- /react-text --><button
-                                            class="Button_1w8tm98-o_O-link_wjki9h-o_O-md_1jvotax text-uppercase font-sm bold p-a-0"
-                                            style="color:#2A73CC;vertical-align:baseline;min-height:28px;"
-                                            data-reactid="437"><span
-                                            class="Box_120drhm-o_O-centerJustify_1nezfbd-o_O-centerAlign_19zvu2s-o_O-displayflex_poyjc"
-                                            data-reactid="438"><!-- react-text: 439 -->More
-                                        <!-- /react-text --></span></button></span></span></span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Box_120drhm-o_O-displayflex_poyjc m-b-2 p-t-1s" data-reactid="440">
-                        <div class="circleStyle_v5k581 m-x-1s m-b-1s m-r-1" data-reactid="441">
-                            <svg aria-hidden="true" class="SvgIcon_8wfvj4" style="fill:#01256E;height:20px;width:20px;"
-                                 viewBox="0 0 48 48" role="img"
-                                 aria-labelledby="Доступныеязыкиa3e72224-cae1-42c2-ae26-5ddd00d3faf3 Доступныеязыкиa3e72224-cae1-42c2-ae26-5ddd00d3faf3Desc"
-                                 xmlns="http://www.w3.org/2000/svg" data-reactid="442"><title
-                                    id="Доступныеязыкиa3e72224-cae1-42c2-ae26-5ddd00d3faf3" data-reactid="443">Доступные
-                                языки</title>
-                                <path d="M11.4782609,2.03497615 C6.30052174,2.03497615 2.08695652,6.143593 2.08695652,11.1923688 L2.08695652,43.5739269 L15.2556522,32.5596184 L36.5217391,32.5596184 C41.6994783,32.5596184 45.9130435,28.4510016 45.9130435,23.4022258 L45.9130435,11.1923688 C45.9130435,6.143593 41.6994783,2.03497615 36.5217391,2.03497615 L11.4782609,2.03497615 Z M0,48 L0,11.1923688 C0,5.02130366 5.14956522,0 11.4782609,0 L36.5217391,0 C42.8504348,0 48,5.02130366 48,11.1923688 L48,23.4022258 C48,29.5732909 42.8504348,34.5945946 36.5217391,34.5945946 L16.0278261,34.5945946 L0,48 Z M17.7391304,17.2972973 C17.7391304,15.6113196 16.3377391,14.2448331 14.6086957,14.2448331 C12.8796522,14.2448331 11.4782609,15.6113196 11.4782609,17.2972973 C11.4782609,18.983275 12.8796522,20.3497615 14.6086957,20.3497615 C16.3377391,20.3497615 17.7391304,18.983275 17.7391304,17.2972973 Z M27.1304348,17.2972973 C27.1304348,15.6113196 25.7290435,14.2448331 24,14.2448331 C22.2709565,14.2448331 20.8695652,15.6113196 20.8695652,17.2972973 C20.8695652,18.983275 22.2709565,20.3497615 24,20.3497615 C25.7290435,20.3497615 27.1304348,18.983275 27.1304348,17.2972973 Z M36.5217391,17.2972973 C36.5217391,15.6113196 35.1203478,14.2448331 33.3913043,14.2448331 C31.6622609,14.2448331 30.2608696,15.6113196 30.2608696,17.2972973 C30.2608696,18.983275 31.6622609,20.3497615 33.3913043,20.3497615 C35.1203478,20.3497615 36.5217391,18.983275 36.5217391,17.2972973 Z"
-                                      role="presentation" data-reactid="444"></path>
-                            </svg>
-                        </div>
-                        <div class="Box_120drhm-o_O-displayflex_poyjc-o_O-columnDirection_ia4371" data-reactid="445"><h4
-                                class="H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2 m-b-0" data-reactid="446">
-                            Английский</h4>
-                            <div class="font-sm text-secondary" data-reactid="447">
-                                <div data-reactid="448"><span data-reactid="449"><span data-reactid="450"><span>Субтитры: Украинский, Китайский</span><br><span>(упрощенное письмо),</span><br><span>Португальский (бразильский),</span><br><span>Вьетнамский, Русский, Турецкий,</span><br><span>Английский, Испанский,</span><br><span>Казахский</span></span><span
-                                        style="position:fixed;visibility:hidden;top:0;left:0;" data-reactid="453"><span
-                                        class="text-uppercase font-sm bold" data-reactid="454"><!-- react-text: 455 -->...
-                                    <!-- /react-text --><!-- react-text: 456 --> <!-- /react-text --><button
-                                            class="Button_1w8tm98-o_O-link_wjki9h-o_O-md_1jvotax text-uppercase font-sm bold p-a-0"
-                                            style="color:#2A73CC;vertical-align:baseline;min-height:28px;"
-                                            data-reactid="457"><span
-                                            class="Box_120drhm-o_O-centerJustify_1nezfbd-o_O-centerAlign_19zvu2s-o_O-displayflex_poyjc"
-                                            data-reactid="458"><!-- react-text: 459 -->More
-                                        <!-- /react-text --></span></button></span></span></span></div>
-                            </div>
+                        <div class="mx-3">
+                            <span>4.8</span>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="col-lg-12 mx-auto my-3">
+                <div class="course-item">
+                    <p>Ivan Druz</p>
+                    <hr/>
+                    <span>
+                        A must course for any JS developer. He has amazingly explained every detail. Best course so far
+                        .5 deducted because the course is not updated with new version features
+                    </span>
+                    <hr>
+                    <div class="">
+                        <div class="star-raiting">
+                            <span class="score">
+                                <div class="score-wrap">
+                                    <span class="stars-active" style="width:90%">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="stars-inactive">
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="mx-3">
+                            <span>4.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div>
+                <span class="course-heading">Moderation</span>
+            </div>
+
+
+            <div class="col-lg-12 mx-auto my-3 ">
+                <div class="course-item border border-danger">
+                    <p>Moderator</p>
+                    <hr/>
+                    <span>
+                    Please check your orthography and punctuation in course description
+                </span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
 <!-- Main Content -->
-<hr>
+<!--<hr>-->
 <!-- Pager -->
-<div class="col-lg-2 mx-auto text-center">
-    <a class="btn btn-outline-primary load-more" href="#">Load more</a>
-</div>
+<!--<div class="col-lg-2 mx-auto text-center">-->
+<!--    <a class="btn btn-outline-primary load-more" href="#">Load more</a>-->
+<!--</div>-->
 
 <hr>
 
