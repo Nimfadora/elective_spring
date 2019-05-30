@@ -8,9 +8,9 @@ public enum CourseStatus {
     // student course status
     ACTIVE, ARCHIVED, BOOKMARKED,
     // course status
-    PUBLISHED, IN_DEVELOPMENT, IN_MODERATION;
+    PUBLISHED, IN_DEVELOPMENT, IN_MODERATION, APPROVED;
 
-    private static final List<CourseStatus> STUDENT_COURSE_STATUSES = ImmutableList.of(
+    public static final List<CourseStatus> STUDENT_COURSE_STATUSES = ImmutableList.of(
             ACTIVE, ARCHIVED, BOOKMARKED
     );
 

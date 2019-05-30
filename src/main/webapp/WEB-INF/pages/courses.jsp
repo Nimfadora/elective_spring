@@ -104,6 +104,7 @@
 
             <div class="col">
                 <select name="skill" class="form-control">
+
                     <option value="not_selected">Skill</option>
                     <option value="javascript">JavaScript</option>
                     <option value="html">HTML</option>
@@ -193,7 +194,7 @@
                         </div>
                         <div class="course-meta">
                             <span><c:out value="${course.rating}"/> (<c:out value="${course.reviews}"/>)</span>
-                            <span><c:out value="${course.durationHours}"/>h</span>
+                            <span><c:out value="${course.durationHours}"/></span>
                             <span><c:out value="${course.level}"/></span>
                         </div>
                     </div>

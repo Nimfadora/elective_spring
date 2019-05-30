@@ -7,10 +7,6 @@ curl -X PUT "http://127.0.0.1:9200/en/" -H 'Content-Type: application/json' -d'
             "type":       "stop",
             "stopwords":  "_english_"
           },
-          "english_keywords": {
-            "type":       "keyword_marker",
-            "keywords":   []
-          },
           "english_stemmer": {
             "type":       "stemmer",
             "language":   "english"
@@ -35,43 +31,24 @@ curl -X PUT "http://127.0.0.1:9200/en/" -H 'Content-Type: application/json' -d'
       }
   },
   "mappings": {
-       "properties": {
-          "id": {
-            "type": "long"
-          },
-          "author": {
-            "type": "text"
-          },
-          "title": {
-            "type": "text"
-          },
-          "description": {
-            "type": "text"
-          },
-          "category": {
-            "type": "text"
-          },
-          "level": {
-            "type": "keyword"
-          },
-          "rating": {
-            "type": "double"
-          },
-          "reviews": {
-            "type": "long"
-          },
-          "studentsRegistered": {
-            "type": "long"
-          },
-          "durationHours": {
-            "type": "double"
-          },
-          "imgUrl": {
-            "type": "keyword"
-          },
-          "courseStatus": {
-            "type": "keyword"
-          }
-       }
+    "coursedocument":{
+        "properties": {
+          "id": {"type": "long"},
+          "author": {"type": "text"},
+          "category": {"type": "text", "fields":{"keyword":{"type":"keyword","ignore_above":256}}},
+          "title": {"type": "text"},
+          "description": {"type": "text"},
+          "level": {"type": "keyword"},
+          "rating": {"type": "float"},
+          "reviewsCount": {"type": "long"},
+          "studentsRegistered": {"type": "long"},
+          "durationHours": {"type": "float"},
+          "imgUrl": {"type": "keyword"},
+          "courseStatus": {"type": "keyword"}
+          "languages":{"type": "keyword"}
+          "skills":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}}
+          "reviews":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}}
+        }
+    }
   }
 }'

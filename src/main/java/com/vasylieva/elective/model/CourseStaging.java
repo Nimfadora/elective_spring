@@ -4,16 +4,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vasylieva.elective.util.converter.SetJsonConverter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.data.elasticsearch.annotations.Document;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
-@Table(name = "course")
-public class Course {
+@Table(name = "course_staging")
+public class CourseStaging {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @JsonIgnore
@@ -41,12 +48,16 @@ public class Course {
     private Set<String> languages;
 
     /* Only for JPA*/
-    public Course() {
+    public CourseStaging() {
     }
 
-    public Course(User author, String category, String title, String description, double rating, long reviews, long studentsRegistered,
-                  double durationHours, CourseLevel level, String imgUrl, Set<String> skills,
-                  Set<String> languages, String courseStatus) {
+    public CourseStaging(Course course) {
+
+    }
+
+    public CourseStaging(User author, String category, String title, String description, double rating, long reviews, long studentsRegistered,
+                         double durationHours, CourseLevel level, String imgUrl, Set<String> skills,
+                         Set<String> languages, String courseStatus) {
         this.author = author;
         this.category = category;
         this.title = title;
@@ -60,10 +71,6 @@ public class Course {
         this.skills = skills;
         this.languages = languages;
         this.courseStatus = courseStatus;
-    }
-
-    public Course(CourseStaging courseStaging) {
-
     }
 
     public String getCategory() {
