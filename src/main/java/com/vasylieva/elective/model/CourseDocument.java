@@ -38,7 +38,7 @@ public class CourseDocument {
         this.title = course.getTitle();
         this.description = course.getDescription();
         this.rating = course.getRating();
-        this.reviews = course.getReviews();
+        this.reviews = course.getStudentsReviewed();
         this.studentsRegistered = course.getStudentsRegistered();
         this.durationHours = course.getDurationHours();
         this.level = course.getLevel();

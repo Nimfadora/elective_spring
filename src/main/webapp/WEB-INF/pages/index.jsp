@@ -158,7 +158,7 @@
                     </span>
                         </div>
                         <div class="course-meta">
-                            <span><c:out value="${course.rating}"/> (<c:out value="${course.reviews}"/>)</span>
+                            <span><c:out value="${course.rating}"/> (<c:out value="${course.studentsReviewed}"/>)</span>
                             <span><c:out value="${course.durationHours}"/>h</span>
                             <span><c:out value="${course.level}"/></span>
                         </div>
@@ -201,7 +201,7 @@
                     </span>
                         </div>
                         <div class="course-meta">
-                            <span><c:out value="${course.rating}"/> (<c:out value="${course.reviews}"/>)</span>
+                            <span><c:out value="${course.rating}"/> (<c:out value="${course.studentsReviewed}"/>)</span>
                             <span><c:out value="${course.durationHours}"/>h</span>
                             <span><c:out value="${course.level}"/></span>
                         </div>
@@ -244,7 +244,7 @@
                     </span>
                         </div>
                         <div class="course-meta">
-                            <span><c:out value="${course.rating}"/> (<c:out value="${course.reviews}"/>)</span>
+                            <span><c:out value="${course.rating}"/> (<c:out value="${course.studentsReviewed}"/>)</span>
                             <span><c:out value="${course.durationHours}"/>h</span>
                             <span><c:out value="${course.level}"/></span>
                         </div>

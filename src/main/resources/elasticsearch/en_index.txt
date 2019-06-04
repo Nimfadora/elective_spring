@@ -40,7 +40,7 @@ curl -X PUT "http://127.0.0.1:9200/en/" -H 'Content-Type: application/json' -d'
           "description": {"type": "text"},
           "level": {"type": "keyword"},
           "rating": {"type": "float"},
-          "reviewsCount": {"type": "long"},
+          "studentsReviewed": {"type": "long"},
           "studentsRegistered": {"type": "long"},
           "durationHours": {"type": "float"},
           "imgUrl": {"type": "keyword"},

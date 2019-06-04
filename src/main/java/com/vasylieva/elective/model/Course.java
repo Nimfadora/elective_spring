@@ -1,10 +1,6 @@
 package com.vasylieva.elective.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vasylieva.elective.util.converter.SetJsonConverter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,28 +9,19 @@ import java.util.Set;
 @Table(name = "course")
 public class Course {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id", updatable = false)
-    @Fetch(FetchMode.JOIN)
-    private User author;
-
+    private Long authorId;
     private String category;
     private String title;
-
     @Column(length = 2000)
     private String description;
     private double rating;
-    private long reviews;
+    private long studentsReviewed;
     private long studentsRegistered;
     private double durationHours;
     private CourseLevel level;
     private String imgUrl;
     private String courseStatus;
-
     @Convert(converter = SetJsonConverter.class)
     private Set<String> skills;
     @Convert(converter = SetJsonConverter.class)
@@ -44,15 +31,15 @@ public class Course {
     public Course() {
     }
 
-    public Course(User author, String category, String title, String description, double rating, long reviews, long studentsRegistered,
-                  double durationHours, CourseLevel level, String imgUrl, Set<String> skills,
+    public Course(long authorId, String category, String title, String description, double rating, long studentsReviewed,
+                  long studentsRegistered, double durationHours, CourseLevel level, String imgUrl, Set<String> skills,
                   Set<String> languages, String courseStatus) {
-        this.author = author;
+        this.authorId = authorId;
         this.category = category;
         this.title = title;
         this.description = description;
         this.rating = rating;
-        this.reviews = reviews;
+        this.studentsReviewed = studentsReviewed;
         this.studentsRegistered = studentsRegistered;
         this.durationHours = durationHours;
         this.level = level;
@@ -74,12 +61,12 @@ public class Course {
         this.category = category;
     }
 
-    public User getAuthor() {
-        return author;
+    public long getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setAuthorId(long authorId) {
+        this.authorId = authorId;
     }
 
     public void setSkills(Set<String> skills) {
@@ -130,12 +117,12 @@ public class Course {
         this.rating = rating;
     }
 
-    public long getReviews() {
-        return reviews;
+    public long getStudentsReviewed() {
+        return studentsReviewed;
     }
 
-    public void setReviews(long reviews) {
-        this.reviews = reviews;
+    public void setStudentsReviewed(long studentsReviewed) {
+        this.studentsReviewed = studentsReviewed;
     }
 
     public long getStudentsRegistered() {
@@ -182,16 +169,19 @@ public class Course {
     public String toString() {
         return "Course{" +
                 "id=" + id +
+                ", authorId=" + authorId +
+                ", category='" + category + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", rating=" + rating +
-                ", reviews=" + reviews +
+                ", studentsReviewed=" + studentsReviewed +
+                ", studentsRegistered=" + studentsRegistered +
                 ", durationHours=" + durationHours +
                 ", level=" + level +
                 ", imgUrl='" + imgUrl + '\'' +
+                ", courseStatus='" + courseStatus + '\'' +
                 ", skills=" + skills +
                 ", languages=" + languages +
-                ", courseStatus='" + courseStatus + '\'' +
                 '}';
     }
 

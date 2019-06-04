@@ -3,6 +3,7 @@ package com.vasylieva.elective.service;
 import com.vasylieva.elective.model.*;
 import com.vasylieva.elective.repository.CourseRepository;
 import com.vasylieva.elective.repository.CourseStagingRepository;
+import com.vasylieva.elective.util.mapper.CourseMapper;
 import org.apache.commons.lang3.tuple.Pair;
 import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -86,25 +86,24 @@ public class CourseService {
         }
     }
 
-    public List<Course> getTopRatedCourses(String lang) {
-        return courseRepository.findTopRatedCourses(lang);
+    public Course getCourse(long id, String lang) {
+        return courseRepository.findById(id, lang);
     }
 
-    public List<Course> getMostPopularCourses(String lang) {
-        return courseRepository.findMostPopularCourses(lang);
-
+    public List<CourseSearchDTO> getTopRatedCourses(String lang) {
+        return mapCourses(courseRepository.findTopRatedCourses(lang));
     }
 
-    public List<Course> getTrendingCourses(String lang) {
-        return courseRepository.findTrendingCourses(lang);
+    public List<CourseSearchDTO> getMostPopularCourses(String lang) {
+        return mapCourses(courseRepository.findMostPopularCourses(lang));
     }
 
-    public Optional<Course> getCourse(long id, String lang) {
-        return courseRepository.findByIdAndLang(id, lang);
+    public List<CourseSearchDTO> getTrendingCourses(String lang) {
+        return mapCourses(courseRepository.findTrendingCourses(lang));
     }
 
-    public List<Course> getCoursesByCategory(String category, String lang) {
-        return courseRepository.findByCategoryAndLang(category, lang);
+    public List<CourseSearchDTO> getCoursesByCategory(String category, String lang) {
+        return mapCourses(courseRepository.findByCategory(category, lang));
     }
 
     public List<CourseDocument> findCoursesWithFilters(String search, String lang, String skill, String level,
@@ -122,26 +121,30 @@ public class CourseService {
         return elasticsearchService.findCourses(lang, search, sortBuilder, pageable);
     }
 
-    public List<Course> getCoursesByUserAndStatus(User user, List<CourseStatus> status, String lang) {
+    public List<CourseSearchDTO> getCoursesByUserAndStatus(User user, List<CourseStatus> status, String lang) {
         if (user.getRole() == Role.STUDENT) {
             return getStudentCourses(user.getId(), status, lang);
         }
         return getAuthorCourses(user.getId(), status, lang);
     }
 
-    private List<Course> getStudentCourses(Long studentId, List<CourseStatus> statuses, String lang) {
-        String statusString = statuses.stream().map(CourseStatus::toString).collect(Collectors.joining(","));
+    private List<CourseSearchDTO> getStudentCourses(Long studentId, List<CourseStatus> statuses, String lang) {
         if (statuses.size() != 1 || !statuses.get(0).isStudentCourseStatus()) {
-            throw new IllegalArgumentException("Invalid course status: " + statusString);
+            throw new IllegalArgumentException("Invalid course status: " + statuses.stream()
+                    .map(CourseStatus::toString).collect(Collectors.joining(",")));
         }
-        return courseRepository.findByUserAndCourseStatuses(studentId, statusString);
+        return mapCourses(courseRepository.findByUserAndCourseStatuses(studentId, statuses, lang));
     }
 
-    private List<Course> getAuthorCourses(Long authorId, List<CourseStatus> statuses, String lang) {
-        String statusString = statuses.stream().map(CourseStatus::toString).collect(Collectors.joining(","));
+    private List<CourseSearchDTO> getAuthorCourses(Long authorId, List<CourseStatus> statuses, String lang) {
         if (statuses.stream().anyMatch(STUDENT_COURSE_STATUSES::contains)) {
-            throw new IllegalArgumentException("Such status does not exist:" + statusString);
+            throw new IllegalArgumentException("Such status does not exist:" + statuses.stream()
+                    .map(CourseStatus::toString).collect(Collectors.joining(",")));
         }
-        return courseRepository.findByUserAndCourseStatuses(authorId, statusString);
+        return mapCourses(courseRepository.findByUserAndCourseStatuses(authorId, statuses, lang));
+    }
+
+    private List<CourseSearchDTO> mapCourses(List<Object> courses) {
+        return courses.stream().map(CourseMapper::mapCourseSearchDto).collect(Collectors.toList());
     }
 }

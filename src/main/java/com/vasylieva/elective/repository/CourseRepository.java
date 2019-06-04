@@ -12,54 +12,98 @@ import java.util.Optional;
 
 public interface CourseRepository extends CrudRepository<Course, Long> {
 
-    List<Course> findByCategoryAndLang(String category, String lang);
-
-    @Query(value = "SELECT courses.* FROM courses c JOIN user_courses uc " +
-            "ON(c.id = sc.course_id) " +
-            "WHERE uc.user_id = :user_id AND c.course_status IN (:statuses)",
-            nativeQuery = true)
-    List<Course> findByUserAndCourseStatuses(@Param("user_id") Long userId,
-                                             @Param("statuses") String statuses);
-
-    @Query(value = "SELECT c.*, COUNT(uc.course_id) as studentsRegistered, " +
-            "COUNT(f.course_id) as reviewsCount " +
-            "AVG(f.rating) as rating " +
+    @Query(value = "SELECT c.id, author_courses.user_id, c.category, c.title, c.description, " +
+            "AVG(f.rating) as rating, COUNT(f.user_id) as studentsReviewed, " +
+            "COUNT(user_courses.user_id) as studentsRegistered, c.duration, " +
+            "c.level, c.imgUrl, c.skills, c.languages, c.status " +
             "FROM courses c " +
-            "JOIN user_courses uc " +
+            "JOIN user_courses " +
+            "JOIN user_courses author_courses " +
             "JOIN feedback f " +
-            "WHERE c.id = uc.course_id AND c.id=f.course_id " +
-            "AND c.course_status = 'PUBLISHED' AND c.lang = :lang" +
-            "GROUP BY c.*" +
-            "ORDER BY rating",
+            "WHERE c.id = user_courses.course_id AND user_courses.relationship='STUDENT' " +
+            "AND c.id = author_courses.course_id AND author_courses.relationship='AUTHOR' " +
+            "AND c.id = f.course_id " +
+            "AND c.id = :course_id AND c.lang = :lang",
             nativeQuery = true)
-    List<Course> findTopRatedCourses(@Param("lang") String lang);
+    Object findById(@Param("course_id") Long id,
+                    @Param("lang") String lang);
 
-
-    Optional<Course> findByIdAndLang(Long id, String lang);
-
-    @Query(value = "SELECT c.*, COUNT(uc.course_id) as studentsRegistered, " +
-            "COUNT(f.course_id) as reviewsCount " +
-            "AVG(f.rating) as rating " +
+    @Query(value = "SELECT c.id, c.category, c.title, AVG(f.rating) as rating, " +
+            "COUNT(f.user_id) as studentsReviewed, COUNT(user_courses.user_id) as studentsRegistered, " +
+            "c.duration, c.level, c.imgUrl, c.status " +
             "FROM courses c " +
-            "JOIN user_courses uc " +
+            "JOIN user_courses " +
             "JOIN feedback f " +
-            "WHERE c.id = uc.course_id AND c.id=f.course_id " +
-            "AND c.course_status = 'PUBLISHED' AND c.lang = :lang" +
-            "GROUP BY c.*" +
-            "ORDER BY rating",
+            "WHERE c.id = user_courses.course_id " +
+            "AND c.id = f.course_id " +
+            "AND user_courses.user_id = :user_id " +
+            "AND c.status IN (:statuses) " +
+            "AND c.lang = :lang " +
+            "ORDER BY c.title",
             nativeQuery = true)
-    List<Course> findMostPopularCourses(@Param("lang") String lang);
+    List<Object> findByUserAndCourseStatuses(@Param("user_id") Long userId,
+                                             @Param("statuses") List<CourseStatus> statuses,
+                                             @Param("lang") String lang);
 
-    @Query(value = "SELECT c.*, COUNT(uc.course_id) as studentsRegistered, " +
-            "COUNT(f.course_id) as reviewsCount " +
-            "AVG(f.rating) as rating " +
+    @Query(value = "SELECT c.id, c.category, c.title, AVG(f.rating) as rating, " +
+            "COUNT(f.user_id) as studentsReviewed, COUNT(user_courses.user_id) as studentsRegistered, " +
+            "c.duration, c.level, c.imgUrl " +
             "FROM courses c " +
-            "JOIN user_courses uc " +
+            "JOIN user_courses " +
             "JOIN feedback f " +
-            "WHERE c.id = uc.course_id AND c.id=f.course_id " +
-            "AND c.course_status = 'PUBLISHED' AND c.lang = :lang" +
-            "GROUP BY c.*" +
-            "ORDER BY rating",
+            "WHERE c.id = user_courses.course_id AND user_courses.relationship='STUDENT' " +
+            "AND c.id = f.course_id " +
+            "AND c.status = 'PUBLISHED'" +
+            "AND c.category = :category " +
+            "AND c.lang = :lang " +
+            "ORDER BY rating DESC",
             nativeQuery = true)
-    List<Course> findTrendingCourses(@Param("lang") String lang);
+    List<Object> findByCategory(@Param("category") String category,
+                                @Param("lang") String lang);
+
+    @Query(value = "SELECT c.id, c.category, c.title, AVG(f.rating) as rating, " +
+            "COUNT(f.user_id) as studentsReviewed, COUNT(user_courses.user_id) as studentsRegistered, " +
+            "c.duration, c.level, c.imgUrl " +
+            "FROM courses c " +
+            "JOIN user_courses " +
+            "JOIN feedback f " +
+            "WHERE c.id = user_courses.course_id AND user_courses.relationship='STUDENT' " +
+            "AND c.id = f.course_id " +
+            "AND c.status = 'PUBLISHED'" +
+            "AND lang = :lang " +
+            "ORDER BY rating DESC " +
+            "LIMIT 3",
+            nativeQuery = true)
+    List<Object> findTopRatedCourses(@Param("lang") String lang);
+
+    @Query(value = "SELECT c.id, c.category, c.title, AVG(f.rating) as rating, " +
+            "COUNT(f.user_id) as studentsReviewed, COUNT(user_courses.user_id) as studentsRegistered, " +
+            "c.duration, c.level, c.imgUrl " +
+            "FROM courses c " +
+            "JOIN user_courses " +
+            "JOIN feedback f " +
+            "WHERE c.id = user_courses.course_id AND user_courses.relationship='STUDENT' " +
+            "AND c.id = f.course_id " +
+            "AND c.status = 'PUBLISHED'" +
+            "AND lang = :lang " +
+            "ORDER BY studentsRegistered DESC " +
+            "LIMIT 3",
+            nativeQuery = true)
+    List<Object> findMostPopularCourses(@Param("lang") String lang);
+
+    @Query(value = "SELECT c.id, c.category, c.title, AVG(f.rating) as rating, " +
+            "COUNT(f.user_id) as studentsReviewed, COUNT(user_courses.user_id) as studentsRegistered, " +
+            "c.duration, c.level, c.imgUrl " +
+            "FROM courses c " +
+            "JOIN user_courses " +
+            "JOIN feedback f " +
+            "WHERE c.id = user_courses.course_id AND user_courses.relationship='STUDENT' " +
+            "AND c.id = f.course_id " +
+            "AND c.status = 'PUBLISHED'" +
+            "AND lang = :lang " +
+            "WHERE c.date_created > CURRENT_DATE - INTEGER '7'" +
+            "ORDER BY rating DESC " +
+            "LIMIT 3",
+            nativeQuery = true)
+    List<Object> findTrendingCourses(@Param("lang") String lang);
 }
