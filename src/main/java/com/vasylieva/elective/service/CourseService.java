@@ -1,9 +1,14 @@
 package com.vasylieva.elective.service;
 
 import com.vasylieva.elective.model.*;
+import com.vasylieva.elective.model.dto.CourseDTO;
+import com.vasylieva.elective.model.dto.CourseSearchDTO;
+import com.vasylieva.elective.model.status.CourseStatus;
+import com.vasylieva.elective.model.status.Relationship;
+import com.vasylieva.elective.model.status.Role;
 import com.vasylieva.elective.repository.CourseRepository;
 import com.vasylieva.elective.repository.CourseStagingRepository;
-import com.vasylieva.elective.util.mapper.CourseMapper;
+import com.vasylieva.elective.util.CourseMapper;
 import org.apache.commons.lang3.tuple.Pair;
 import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
@@ -18,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.vasylieva.elective.model.CourseStatus.STUDENT_COURSE_STATUSES;
+import static com.vasylieva.elective.model.status.CourseStatus.STUDENT_COURSE_STATUSES;
 
 @SuppressWarnings("ALL")
 @Service
@@ -42,7 +47,7 @@ public class CourseService {
         this.validationService = validationService;
     }
 
-    public CourseStaging createCourse(CourseStaging course) {
+    public CourseStaging saveCourseToStaging(CourseStaging course) {
         validationService.validateCourse(course);
         return courseStagingRepository.save(course);
     }
@@ -53,15 +58,11 @@ public class CourseService {
 
         switch (courseStatus) {
             case IN_DEVELOPMENT:
-                return createCourse(course);
-            case PUBLISHED:
-                course.setCourseStatus(CourseStatus.IN_DEVELOPMENT.toString());
-                return createCourse(course);
+                return saveCourseToStaging(course);
             case APPROVED:
                 Course saved = courseRepository.save(new Course(course));
-                saved.getLanguages()
-                        .forEach(lang -> elasticsearchService.indexCourse(lang, new CourseDocument(saved)));
-                courseStagingRepository.delete(course);
+                saved.getLanguages().forEach(lang -> elasticsearchService.indexCourse(lang, new CourseDocument(saved)));
+                courseStagingRepository.deleteById(course.getId());
             default:
                 throw new IllegalArgumentException("Invalid course status");
         }
@@ -69,25 +70,21 @@ public class CourseService {
 
     public void deleteCourse(Course course) {
         CourseStatus courseStatus = CourseStatus.valueOf(course.getCourseStatus());
-
         switch (courseStatus) {
-            case PUBLISHED:
+            case IN_MODERATION:
             case IN_DEVELOPMENT:
-                courseStagingRepository.deleteById(course.getId());
                 Optional<Course> published = courseRepository.findById(course.getId());
-                published.ifPresent(c -> {
-                    c.setCourseStatus(CourseStatus.IN_MODERATION.toString());
-                    createCourse(new CourseStaging(course));
-                });
-            case APPROVED:
-                courseStagingRepository.deleteById(course.getId());
+                if (!published.isPresent()) {
+                    courseStagingRepository.deleteById(course.getId());
+                    break;
+                }
             default:
                 throw new IllegalArgumentException("Cannot delete: invalid course status");
         }
     }
 
-    public Course getCourse(long id, String lang) {
-        return courseRepository.findById(id, lang);
+    public CourseDTO getCourse(long id, String lang) {
+        return CourseMapper.mapCourseDTO(courseRepository.findById(id, lang));
     }
 
     public List<CourseSearchDTO> getTopRatedCourses(String lang) {
@@ -121,7 +118,7 @@ public class CourseService {
         return elasticsearchService.findCourses(lang, search, sortBuilder, pageable);
     }
 
-    public List<CourseSearchDTO> getCoursesByUserAndStatus(User user, List<CourseStatus> status, String lang) {
+    public List<CourseSearchDTO> getCoursesByUserAndRelationship(User user, String relationship, String lang) {
         if (user.getRole() == Role.STUDENT) {
             return getStudentCourses(user.getId(), status, lang);
         }

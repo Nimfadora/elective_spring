@@ -1,4 +1,7 @@
-package com.vasylieva.elective.model;
+package com.vasylieva.elective.model.dto;
+
+import com.vasylieva.elective.model.status.CourseLevel;
+import com.vasylieva.elective.model.status.CourseStatus;
 
 public class CourseSearchDTO {
     private Long id;

@@ -1,7 +1,7 @@
 package com.vasylieva.elective.repository;
 
 import com.vasylieva.elective.model.CourseStaging;
-import com.vasylieva.elective.model.CourseStatus;
+import com.vasylieva.elective.model.status.CourseStatus;
 import com.vasylieva.elective.model.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

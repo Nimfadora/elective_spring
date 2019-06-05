@@ -1,7 +1,6 @@
 package com.vasylieva.elective.model;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import com.vasylieva.elective.model.status.Role;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,34 +12,50 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String userName;
+    private String name;
+    private String email;
+    private String company;
     private String password;
     private Role role;
-    @OneToMany(mappedBy="author", cascade=CascadeType.ALL)
-    @Fetch(FetchMode.JOIN)
-    private List<Course> courseList;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserCourse> courseList;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Feedback> feedbacks;
 
+    /* For JPA only */
     public User() {
     }
 
-    public User(String userName, String password, Role role, List<Course> courseList) {
-        this.userName = userName;
+    public User(String name, String email, String company, String password, Role role, List<UserCourse> courseList) {
+        this.name = name;
+        this.email = email;
+        this.company = company;
         this.password = password;
         this.role = role;
         this.courseList = courseList;
     }
 
-    public User(String userName, String password, Role role) {
-        this.userName = userName;
-        this.password = password;
-        this.role = role;
+    public String getEmail() {
+        return email;
     }
 
-    public List<Course> getCourseList() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public List<UserCourse> getCourseList() {
         return courseList;
     }
 
-    public void setCourseList(List<Course> courseList) {
+    public void setCourseList(List<UserCourse> courseList) {
         this.courseList = courseList;
     }
 
@@ -52,12 +67,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -80,10 +95,10 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
-                ", courseList=" + courseList.stream().map(Course::toString).collect(Collectors.joining(",")) +
+                ", courseList=" + courseList.stream().map(UserCourse::toString).collect(Collectors.joining(",")) +
                 '}';
     }
 }

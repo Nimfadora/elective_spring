@@ -9,7 +9,6 @@ import java.util.Map;
 @Service
 public class ValidationService {
 
-    public Map<String, String> validateCourse(CourseStaging course) {
-        return null;
+    public void validateCourse(CourseStaging course) {
     }
 }

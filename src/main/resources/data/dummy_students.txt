@@ -1,5 +1,5 @@
-{"userName": "Matvei Dunaevskii","password": "324","role": "STUDENT"}
-{"userName": "Robert Baratheon","password": "546","role": "STUDENT"}
-{"userName": "Robert Baratheon","password": "745","role": "STUDENT"}
-{"userName": "Matilda Begshot","password": "254","role": "STUDENT"}
-{"userName": "Nikolai Stopka","password": "698","role": "STUDENT"}
+{"name": "Matvei Dunaevskii","password": "324","role": "STUDENT"}
+{"name": "Robert Baratheon","password": "546","role": "STUDENT"}
+{"name": "Robert Baratheon","password": "745","role": "STUDENT"}
+{"name": "Matilda Begshot","password": "254","role": "STUDENT"}
+{"name": "Nikolai Stopka","password": "698","role": "STUDENT"}

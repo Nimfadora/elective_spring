@@ -1,8 +1,11 @@
 package com.vasylieva.elective.model;
 
-import com.vasylieva.elective.util.converter.SetJsonConverter;
+import com.vasylieva.elective.model.status.CourseLevel;
+import com.vasylieva.elective.model.status.Language;
+import com.vasylieva.elective.util.SetJsonConverter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,14 +13,14 @@ import java.util.Set;
 public class Course {
     @Id
     private Long id;
-    private Long authorId;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UserCourse> courseUsers = new HashSet<>();
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Feedback> courseFeedbacks = new HashSet<>();
+    private Language lang;
     private String category;
     private String title;
-    @Column(length = 2000)
     private String description;
-    private double rating;
-    private long studentsReviewed;
-    private long studentsRegistered;
     private double durationHours;
     private CourseLevel level;
     private String imgUrl;
@@ -31,16 +34,12 @@ public class Course {
     public Course() {
     }
 
-    public Course(long authorId, String category, String title, String description, double rating, long studentsReviewed,
-                  long studentsRegistered, double durationHours, CourseLevel level, String imgUrl, Set<String> skills,
-                  Set<String> languages, String courseStatus) {
-        this.authorId = authorId;
+    public Course(Language lang, String category, String title, String description, double durationHours, CourseLevel level,
+                  String imgUrl, Set<String> skills, Set<String> languages, String courseStatus) {
+        this.lang = lang;
         this.category = category;
         this.title = title;
         this.description = description;
-        this.rating = rating;
-        this.studentsReviewed = studentsReviewed;
-        this.studentsRegistered = studentsRegistered;
         this.durationHours = durationHours;
         this.level = level;
         this.imgUrl = imgUrl;
@@ -50,7 +49,33 @@ public class Course {
     }
 
     public Course(CourseStaging courseStaging) {
+        this.id = courseStaging.getId();
+        this.lang = courseStaging.getLang();
+        this.category = courseStaging.getCategory();
+        this.title = courseStaging.getTitle();
+        this.description = courseStaging.getDescription();
+        this.durationHours = courseStaging.getDurationHours();
+        this.level = courseStaging.getLevel();
+        this.imgUrl = courseStaging.getImgUrl();
+        this.skills = courseStaging.getSkills();
+        this.languages = courseStaging.getLanguages();
+        this.courseStatus = courseStaging.getCourseStatus();
+    }
 
+    public Set<Feedback> getCourseFeedbacks() {
+        return courseFeedbacks;
+    }
+
+    public void setCourseFeedbacks(Set<Feedback> courseFeedbacks) {
+        this.courseFeedbacks = courseFeedbacks;
+    }
+
+    public Set<UserCourse> getCourseUsers() {
+        return courseUsers;
+    }
+
+    public void setCourseUsers(Set<UserCourse> courseUsers) {
+        this.courseUsers = courseUsers;
     }
 
     public String getCategory() {
@@ -59,14 +84,6 @@ public class Course {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(long authorId) {
-        this.authorId = authorId;
     }
 
     public void setSkills(Set<String> skills) {
@@ -93,6 +110,14 @@ public class Course {
         this.id = id;
     }
 
+    public Language getLang() {
+        return lang;
+    }
+
+    public void setLang(Language lang) {
+        this.lang = lang;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -107,30 +132,6 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public long getStudentsReviewed() {
-        return studentsReviewed;
-    }
-
-    public void setStudentsReviewed(long studentsReviewed) {
-        this.studentsReviewed = studentsReviewed;
-    }
-
-    public long getStudentsRegistered() {
-        return studentsRegistered;
-    }
-
-    public void setStudentsRegistered(long studentsRegistered) {
-        this.studentsRegistered = studentsRegistered;
     }
 
     public double getDurationHours() {
@@ -169,13 +170,9 @@ public class Course {
     public String toString() {
         return "Course{" +
                 "id=" + id +
-                ", authorId=" + authorId +
                 ", category='" + category + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", rating=" + rating +
-                ", studentsReviewed=" + studentsReviewed +
-                ", studentsRegistered=" + studentsRegistered +
                 ", durationHours=" + durationHours +
                 ", level=" + level +
                 ", imgUrl='" + imgUrl + '\'' +
@@ -183,9 +180,5 @@ public class Course {
                 ", skills=" + skills +
                 ", languages=" + languages +
                 '}';
-    }
-
-    public int getRatingInPercents() {
-        return (int) (this.rating * 100 / 5.0);
     }
 }

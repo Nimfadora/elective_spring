@@ -1,14 +1,12 @@
 package com.vasylieva.elective.repository;
 
 import com.vasylieva.elective.model.Course;
-import com.vasylieva.elective.model.CourseStatus;
-import com.vasylieva.elective.model.User;
+import com.vasylieva.elective.model.status.CourseStatus;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CourseRepository extends CrudRepository<Course, Long> {
 

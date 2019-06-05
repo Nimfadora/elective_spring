@@ -1,5 +1,5 @@
-{"userName": "Asim Hussain", "password": "123", "role": "AUTHOR"}
-{ "userName": "Haruki Murakami", "password": "qwerty", "role": "AUTHOR"}
-{ "userName": "Ivan Surkov", "password": "4321", "role": "AUTHOR"}
-{ "userName": "Michail Terentev", "password": "66667777", "role": "AUTHOR"}
-{ "userName": "Vasilii Yurchenko", "password": "987654321", "role": "AUTHOR"}
+{"name": "Asim Hussain", "password": "123", "role": "AUTHOR"}
+{ "name": "Haruki Murakami", "password": "qwerty", "role": "AUTHOR"}
+{ "name": "Ivan Surkov", "password": "4321", "role": "AUTHOR"}
+{ "name": "Michail Terentev", "password": "66667777", "role": "AUTHOR"}
+{ "name": "Vasilii Yurchenko", "password": "987654321", "role": "AUTHOR"}

@@ -1,5 +1,6 @@
 package com.vasylieva.elective.model;
 
+import com.vasylieva.elective.model.status.CourseLevel;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.Id;
@@ -10,42 +11,33 @@ public class CourseDocument {
 
     @Id
     private Long id;
-
     private String author;
-
+    private String authorCompany;
     private String category;
     private String title;
     private String description;
-    private double rating;
-    private long reviews;
-    private long studentsRegistered;
     private double durationHours;
     private CourseLevel level;
-    private String imgUrl;
-    private String courseStatus;
-
     private Set<String> skills;
     private Set<String> languages;
+    private Set<String> reviews;
 
     /* Only for JPA*/
     public CourseDocument() {
     }
 
-    public CourseDocument(Course course) {
+    public CourseDocument(Course course, User author, Set<String> reviews) {
         this.id = course.getId();
-        this.author = course.getAuthor().getUserName();
+        this.author = author.getName();
+        this.authorCompany = author.getCompany();
         this.category = course.getCategory();
         this.title = course.getTitle();
         this.description = course.getDescription();
-        this.rating = course.getRating();
-        this.reviews = course.getStudentsReviewed();
-        this.studentsRegistered = course.getStudentsRegistered();
         this.durationHours = course.getDurationHours();
         this.level = course.getLevel();
-        this.imgUrl = course.getImgUrl();
         this.skills = course.getSkills();
         this.languages = course.getLanguages();
-        this.courseStatus = course.getCourseStatus();
+        this.reviews = reviews;
     }
 
     public String getCategory() {
@@ -72,14 +64,6 @@ public class CourseDocument {
         this.languages = languages;
     }
 
-    public String getCourseStatus() {
-        return courseStatus;
-    }
-
-    public void setCourseStatus(String courseStatus) {
-        this.courseStatus = courseStatus;
-    }
-
     public Long getId() {
         return id;
     }
@@ -104,30 +88,6 @@ public class CourseDocument {
         this.description = description;
     }
 
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public long getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(long reviews) {
-        this.reviews = reviews;
-    }
-
-    public long getStudentsRegistered() {
-        return studentsRegistered;
-    }
-
-    public void setStudentsRegistered(long studentsRegistered) {
-        this.studentsRegistered = studentsRegistered;
-    }
-
     public double getDurationHours() {
         return durationHours;
     }
@@ -144,14 +104,6 @@ public class CourseDocument {
         this.level = level;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
     public Set<String> getSkills() {
         return skills;
     }
@@ -160,24 +112,36 @@ public class CourseDocument {
         return languages;
     }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", rating=" + rating +
-                ", reviews=" + reviews +
-                ", durationHours=" + durationHours +
-                ", level=" + level +
-                ", imgUrl='" + imgUrl + '\'' +
-                ", skills=" + skills +
-                ", languages=" + languages +
-                ", courseStatus='" + courseStatus + '\'' +
-                '}';
+    public String getAuthorCompany() {
+        return authorCompany;
     }
 
-    public int getRatingInPercents() {
-        return (int) (this.rating * 100 / 5.0);
+    public void setAuthorCompany(String authorCompany) {
+        this.authorCompany = authorCompany;
+    }
+
+    public Set<String> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<String> reviews) {
+        this.reviews = reviews;
+    }
+
+    @Override
+    public String toString() {
+        return "CourseDocument{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", authorCompany='" + authorCompany + '\'' +
+                ", category='" + category + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", durationHours=" + durationHours +
+                ", level=" + level +
+                ", skills=" + skills +
+                ", languages=" + languages +
+                ", reviews=" + reviews +
+                '}';
     }
 }

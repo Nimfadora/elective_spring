@@ -1,19 +1,14 @@
 package com.vasylieva.elective.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vasylieva.elective.util.converter.SetJsonConverter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import com.vasylieva.elective.model.status.CourseLevel;
+import com.vasylieva.elective.model.status.Language;
+import com.vasylieva.elective.util.SetJsonConverter;
 
-import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Set;
 
@@ -21,27 +16,17 @@ import java.util.Set;
 @Table(name = "course_staging")
 public class CourseStaging {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id", updatable = false)
-    @Fetch(FetchMode.JOIN)
-    private User author;
-
+    private Language lang;
+    private Long authorId;
     private String category;
     private String title;
-
-    @Column(length = 2000)
     private String description;
-    private double rating;
-    private long reviews;
-    private long studentsRegistered;
     private double durationHours;
     private CourseLevel level;
     private String imgUrl;
     private String courseStatus;
-
     @Convert(converter = SetJsonConverter.class)
     private Set<String> skills;
     @Convert(converter = SetJsonConverter.class)
@@ -51,26 +36,36 @@ public class CourseStaging {
     public CourseStaging() {
     }
 
-    public CourseStaging(Course course) {
-
-    }
-
-    public CourseStaging(User author, String category, String title, String description, double rating, long reviews, long studentsRegistered,
-                         double durationHours, CourseLevel level, String imgUrl, Set<String> skills,
-                         Set<String> languages, String courseStatus) {
-        this.author = author;
+    public CourseStaging(Long authorId, Language lang, String category, String title, String description,
+                         double durationHours, CourseLevel level, String imgUrl, String courseStatus,
+                         Set<String> skills, Set<String> languages) {
+        this.lang = lang;
+        this.authorId = authorId;
         this.category = category;
         this.title = title;
         this.description = description;
-        this.rating = rating;
-        this.reviews = reviews;
-        this.studentsRegistered = studentsRegistered;
         this.durationHours = durationHours;
         this.level = level;
         this.imgUrl = imgUrl;
+        this.courseStatus = courseStatus;
         this.skills = skills;
         this.languages = languages;
-        this.courseStatus = courseStatus;
+    }
+
+    public Language getLang() {
+        return lang;
+    }
+
+    public void setLang(Language lang) {
+        this.lang = lang;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
     public String getCategory() {
@@ -79,14 +74,6 @@ public class CourseStaging {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
     }
 
     public void setSkills(Set<String> skills) {
@@ -129,30 +116,6 @@ public class CourseStaging {
         this.description = description;
     }
 
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public long getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(long reviews) {
-        this.reviews = reviews;
-    }
-
-    public long getStudentsRegistered() {
-        return studentsRegistered;
-    }
-
-    public void setStudentsRegistered(long studentsRegistered) {
-        this.studentsRegistered = studentsRegistered;
-    }
-
     public double getDurationHours() {
         return durationHours;
     }
@@ -187,22 +150,18 @@ public class CourseStaging {
 
     @Override
     public String toString() {
-        return "Course{" +
+        return "CourseStaging{" +
                 "id=" + id +
+                ", authorId=" + authorId +
+                ", category='" + category + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", rating=" + rating +
-                ", reviews=" + reviews +
                 ", durationHours=" + durationHours +
                 ", level=" + level +
                 ", imgUrl='" + imgUrl + '\'' +
+                ", courseStatus='" + courseStatus + '\'' +
                 ", skills=" + skills +
                 ", languages=" + languages +
-                ", courseStatus='" + courseStatus + '\'' +
                 '}';
-    }
-
-    public int getRatingInPercents() {
-        return (int) (this.rating * 100 / 5.0);
     }
 }

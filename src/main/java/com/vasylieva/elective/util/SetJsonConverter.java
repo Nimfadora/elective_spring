@@ -1,4 +1,4 @@
-package com.vasylieva.elective.util.converter;
+package com.vasylieva.elective.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
