@@ -20,18 +20,33 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/courses/{category}", method = RequestMethod.GET)
-    public String courses(@PathVariable(name="category") String category,
-                          @RequestParam(name="lang") String lang,
-                          Model model) {
-        model.addAttribute("courses", courseService.getCoursesByCategory(category, lang));
+    public String getCoursesByCategory(@PathVariable("category") String category,
+                                       @RequestParam(name = "sortBy", required = false, defaultValue = "rating") String sortBy,
+                                       @RequestParam(name = "sortOrder", required = false, defaultValue = "desc") String sortOrder,
+                                       @RequestParam(name = "page", required = false, defaultValue = "1") int page,
+                                       @RequestParam("lang") String lang,
+                                       Model model) {
+        model.addAttribute("courses", courseService.getCoursesByCategory(category, lang, sortBy, sortOrder, page));
+        // add user
+        return "courses";
+    }
+
+    @RequestMapping(value = "/courses/search", method = RequestMethod.GET)
+    public String searchCourses(@RequestParam("searchString") String searchString,
+                                @RequestParam(name = "sortBy", required = false, defaultValue = "rating") String sortBy,
+                                @RequestParam(name = "sortOrder", required = false, defaultValue = "desc") String sortOrder,
+                                @RequestParam(name = "page", required = false, defaultValue = "1") int page,
+                                @RequestParam("lang") String lang,
+                                Model model) {
+        model.addAttribute("courses", courseService.findCourses(searchString, lang, sortBy, sortOrder, page));
         // add user
         return "courses";
     }
 
     @RequestMapping(value = "/course", method = RequestMethod.GET)
-    public String courses(@RequestParam(name="id") Long id,
-                          @RequestParam(name="lang") String lang,
-                          Model model) {
+    public String getCourse(@RequestParam(name = "id") Long id,
+                            @RequestParam(name = "lang") String lang,
+                            Model model) {
         model.addAttribute("courses", courseService.getCourse(id, lang));
         // add user
         return "course";

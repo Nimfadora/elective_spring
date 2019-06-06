@@ -24,30 +24,10 @@ public class PageController {
     }
 
     @RequestMapping("/")
-    public String index(Model model) {
-        List<CourseSearchDTO> topRated =  courseService.getCoursesByCategory("Programming", "en")
-                .stream()
-                .sorted(Comparator.comparing(CourseSearchDTO::getRating).reversed())
-                .limit(3)
-                .collect(Collectors.toList());
-        List<CourseSearchDTO> mostPopular =  courseService.getCoursesByCategory("Programming", "en")
-                .stream()
-                .sorted(Comparator.comparing(CourseSearchDTO::getStudentsRegistered).reversed())
-                .limit(3)
-                .collect(Collectors.toList());
-
-        List<CourseSearchDTO> trending =  courseService.getCoursesByCategory("Programming", "en")
-                .stream().limit(3).collect(Collectors.toList());
-
-        model.addAttribute("topCourses", topRated);
-        model.addAttribute("mostPopular", mostPopular);
-        model.addAttribute("trendingCourses", trending);
-
+    public String index(@RequestParam(name = "lang", required = false, defaultValue = "uk") String lang, Model model) {
+        model.addAttribute("topCourses", courseService.getTopRatedCourses(lang));
+        model.addAttribute("mostPopular", courseService.getMostPopularCourses(lang));
+        model.addAttribute("trendingCourses", courseService.getTrendingCourses(lang));
         return "index";
-    }
-
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
     }
 }

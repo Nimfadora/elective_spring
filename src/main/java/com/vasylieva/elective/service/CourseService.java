@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.vasylieva.elective.model.status.CourseStatus.STUDENT_COURSE_STATUSES;
+import static com.vasylieva.elective.model.status.Relationship.STUDENT_COURSE_STATUSES;
 
 @SuppressWarnings("ALL")
 @Service
@@ -99,7 +100,8 @@ public class CourseService {
         return mapCourses(courseRepository.findTrendingCourses(lang));
     }
 
-    public List<CourseSearchDTO> getCoursesByCategory(String category, String lang) {
+    public List<CourseSearchDTO> getCoursesByCategory(String category, String lang, String sortBy, String sortOrder,
+                                                      int page) {
         return mapCourses(courseRepository.findByCategory(category, lang));
     }
 
@@ -143,5 +145,9 @@ public class CourseService {
 
     private List<CourseSearchDTO> mapCourses(List<Object> courses) {
         return courses.stream().map(CourseMapper::mapCourseSearchDto).collect(Collectors.toList());
+    }
+
+    public List<String> getTopSearchResults(String searchString, String lang) {
+        return null;
     }
 }
