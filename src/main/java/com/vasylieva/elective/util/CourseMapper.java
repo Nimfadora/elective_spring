@@ -27,7 +27,7 @@ public class CourseMapper {
         dto.setRating(Double.parseDouble(fields[3].toString()));
         dto.setStudentsReviewed(Long.parseLong(fields[4].toString()));
         dto.setStudentsRegistered(Long.parseLong(fields[5].toString()));
-        dto.setDurationHours(Integer.parseInt(fields[6].toString()));
+        dto.setDurationHours(Double.parseDouble(fields[6].toString()));
         dto.setLevel(CourseLevel.valueOf(fields[7].toString()));
         dto.setImgUrl(fields[8].toString());
 

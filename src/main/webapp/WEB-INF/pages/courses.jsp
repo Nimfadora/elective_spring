@@ -49,21 +49,15 @@
                     Categories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Programming</a>
-                    <a class="dropdown-item" href="#">Design</a>
-                    <a class="dropdown-item" href="#">Math</a>
-                    <a class="dropdown-item" href="#">Algorithms</a>
-                    <!--<div class="dropdown-divider"></div>-->
-                    <a class="dropdown-item" href="#">Architecture</a>
-                    <a class="dropdown-item" href="#">Business</a>
-                    <a class="dropdown-item" href="#">Cloud Computing</a>
-                    <a class="dropdown-item" href="#">Social Sciences</a>
+                    <c:forEach var="category" items="${categories}">
+                        <a class="dropdown-item" href="/courses/<c:out value="${category}"/>?lang=<c:out value="${lang}"/>"><c:out value="${category}"/></a>
+                    </c:forEach>
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0" method="get" action="/courses/search">
             <div class="input-group">
-                <input type="search" class="form-control py-0 px-0" placeholder="Search">
+                <input type="search" name="searchString" class="form-control py-0 px-0" placeholder="Search">
                 <div class="input-group-btn">
                     <button class="btn btn-dark" type="submit">
                         <i class="glyphicon glyphicon-search"></i>
@@ -71,8 +65,6 @@
                 </div>
             </div>
         </form>
-        <button class="btn btn-outline-primary mx-2">Login</button>
-        <button class="btn btn-outline-primary mx-2">Signup</button>
         <div id="lang" class="px-3">
             <a href="#">en</a>
             <select name="langs" style="display: none;">
@@ -81,18 +73,25 @@
                 <option value="ru">ru</option>
             </select>
         </div>
-        <div class="dropdown px-3">
-            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="far fa-user"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                <a class="dropdown-item" href="#">Profile</a>
-                <a class="dropdown-item" href="#">Log out</a>
+        <c:if test = "${user == null}">
+            <a href="/login" class="btn btn-outline-info mx-2">Login</a>
+            <a href="/signup" class="btn btn-outline-info mx-2">Signup</a>
+        </c:if>
+
+        <c:if test = "${user != null}">
+            <div class="dropdown px-3">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="far fa-user"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                    <c:if test = "${user.getRole() != com.vasylieva.elective.model.status.Role.ADMIN}">
+                        <a class="dropdown-item" href="#">Profile</a>
+                    </c:if>
+                    <a class="dropdown-item" href="#">Log out</a>
+                </div>
             </div>
-        </div>
-        <!--<button class="btn btn-outline-info mx-2">Login</button>-->
-        <!--<button class="btn btn-outline-info mx-2">Signup</button>-->
+        </c:if>
     </div>
 </nav>
 
@@ -104,14 +103,10 @@
 
             <div class="col">
                 <select name="skill" class="form-control">
-
                     <option value="not_selected">Skill</option>
-                    <option value="javascript">JavaScript</option>
-                    <option value="html">HTML</option>
-                    <option value="css">CSS</option>
-                    <option value="css">Java</option>
-                    <option value="css">Python</option>
-                    <option value="css">OOP</option>
+                    <c:forEach var="skill" items="${skills}">
+                        <option value="<c:out value="${skill}"/>"><c:out value="${skill}"/></option>
+                    </c:forEach>
                 </select>
             </div>
             <div class="col">
@@ -169,7 +164,7 @@
                     <p><c:out value="${course.title}"/></p>
                     <hr>
                     <div class="course-card">
-                        <img alt="" src="<c:out value="${course.imgUrl}"/>">
+                        <a href="/course/<c:out value="${course.id}"/>"><img alt="" src="<c:out value="${course.imgUrl}"/>"></a>
                     </div>
                     <div class="course-info">
                         <div class="star-raiting">

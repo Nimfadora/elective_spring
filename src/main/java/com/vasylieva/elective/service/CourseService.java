@@ -1,11 +1,12 @@
 package com.vasylieva.elective.service;
 
+import com.google.common.collect.ImmutableSet;
 import com.vasylieva.elective.model.*;
 import com.vasylieva.elective.model.dto.CourseDTO;
 import com.vasylieva.elective.model.dto.CourseSearchDTO;
+import com.vasylieva.elective.model.status.CourseLevel;
 import com.vasylieva.elective.model.status.CourseStatus;
 import com.vasylieva.elective.model.status.Relationship;
-import com.vasylieva.elective.model.status.Role;
 import com.vasylieva.elective.repository.CourseRepository;
 import com.vasylieva.elective.repository.CourseStagingRepository;
 import com.vasylieva.elective.util.CourseMapper;
@@ -19,18 +20,23 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.vasylieva.elective.model.status.CourseStatus.STUDENT_COURSE_STATUSES;
-import static com.vasylieva.elective.model.status.Relationship.STUDENT_COURSE_STATUSES;
+import static com.vasylieva.elective.model.status.CourseStatus.WIP_STATUSES;
 
 @SuppressWarnings("ALL")
 @Service
 public class CourseService {
 
     private static final int PAGE_SIZE = 10;
+    private static final Set<String> LANGS = ImmutableSet.of("EN", "UA", "RU");
+    public static final Set<String> CATEGORIES = ImmutableSet.of("Programming", "Design", "Math",
+            "Algorithms", "Architecture", "Business", "Cloud Computing", "Social Sciences");
+    public static final Set<String> SKILLS = ImmutableSet.of("Javascript", "HTML", "CSS", "Java", "Python", "OOP");
+    public static final Set<String> LEVEL = Arrays.stream(CourseLevel.values()).map(CourseLevel::name).collect(Collectors.toSet());
+    public static final Set<String> DURATION = ImmutableSet.of("0-2", "3-6", "7-12", "13+");
+    public static final Set<String> SORT = ImmutableSet.of("popular", "rating", "A-Z", "Z-A");
 
     private final CourseRepository courseRepository;
     private final CourseStagingRepository courseStagingRepository;
@@ -62,7 +68,12 @@ public class CourseService {
                 return saveCourseToStaging(course);
             case APPROVED:
                 Course saved = courseRepository.save(new Course(course));
-                saved.getLanguages().forEach(lang -> elasticsearchService.indexCourse(lang, new CourseDocument(saved)));
+                User author = saved.getCourseUsers().stream()
+                        .filter(uc -> uc.getRelationship() == Relationship.AUTHOR)
+                        .map(uc -> uc.getUser())
+                        .findFirst()
+                        .get();
+                saved.getLanguages().forEach(lang -> elasticsearchService.indexCourse(lang, new CourseDocument(saved, author)));
                 courseStagingRepository.deleteById(course.getId());
             default:
                 throw new IllegalArgumentException("Invalid course status");
@@ -120,27 +131,9 @@ public class CourseService {
         return elasticsearchService.findCourses(lang, search, sortBuilder, pageable);
     }
 
-    public List<CourseSearchDTO> getCoursesByUserAndRelationship(User user, String relationship, String lang) {
-        if (user.getRole() == Role.STUDENT) {
-            return getStudentCourses(user.getId(), status, lang);
-        }
-        return getAuthorCourses(user.getId(), status, lang);
-    }
-
-    private List<CourseSearchDTO> getStudentCourses(Long studentId, List<CourseStatus> statuses, String lang) {
-        if (statuses.size() != 1 || !statuses.get(0).isStudentCourseStatus()) {
-            throw new IllegalArgumentException("Invalid course status: " + statuses.stream()
-                    .map(CourseStatus::toString).collect(Collectors.joining(",")));
-        }
-        return mapCourses(courseRepository.findByUserAndCourseStatuses(studentId, statuses, lang));
-    }
-
-    private List<CourseSearchDTO> getAuthorCourses(Long authorId, List<CourseStatus> statuses, String lang) {
-        if (statuses.stream().anyMatch(STUDENT_COURSE_STATUSES::contains)) {
-            throw new IllegalArgumentException("Such status does not exist:" + statuses.stream()
-                    .map(CourseStatus::toString).collect(Collectors.joining(",")));
-        }
-        return mapCourses(courseRepository.findByUserAndCourseStatuses(authorId, statuses, lang));
+    public List<CourseSearchDTO> getCoursesByUserAndRelationship(UserDetails user, CourseStatus courseStatus, String lang) {
+        Set<String> statuses = courseStatus == CourseStatus.WIP ? WIP_STATUSES : Collections.singleton(courseStatus.toString());
+        return mapCourses(courseRepository.findByUserAndCourseStatuses(user.getId(), statuses, lang));
     }
 
     private List<CourseSearchDTO> mapCourses(List<Object> courses) {

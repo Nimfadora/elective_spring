@@ -1,6 +1,8 @@
 package com.vasylieva.elective.model;
 
+import com.vasylieva.elective.model.dto.CourseStagingDTO;
 import com.vasylieva.elective.model.status.CourseLevel;
+import com.vasylieva.elective.model.status.CourseStatus;
 import com.vasylieva.elective.model.status.Language;
 import com.vasylieva.elective.util.SetJsonConverter;
 
@@ -16,7 +18,7 @@ import java.util.Set;
 @Table(name = "course_staging")
 public class CourseStaging {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private Language lang;
     private Long authorId;
@@ -50,6 +52,20 @@ public class CourseStaging {
         this.courseStatus = courseStatus;
         this.skills = skills;
         this.languages = languages;
+    }
+
+    public CourseStaging(CourseStagingDTO dto, UserDetails user) {
+        this.lang = dto.lang;
+        this.authorId = user.getId();
+        this.category = dto.category;
+        this.title = dto.title;
+        this.description = dto.description;
+        this.durationHours = dto.durationHours;
+        this.level = dto.level;
+        this.imgUrl = dto.imgUrl;
+        this.courseStatus = CourseStatus.IN_DEVELOPMENT.toString();
+        this.skills = dto.skills;
+        this.languages = dto.languages;
     }
 
     public Language getLang() {

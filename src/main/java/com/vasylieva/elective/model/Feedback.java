@@ -1,13 +1,15 @@
 package com.vasylieva.elective.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.vasylieva.elective.util.ListJsonConverter;
+import com.vasylieva.elective.util.SetJsonConverter;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Feedback {
+@Table(name = "feedback")
+public class Feedback implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn
@@ -20,6 +22,8 @@ public class Feedback {
 
     private int rating;
     private String feedback;
+
+    @Convert(converter = ListJsonConverter.class)
     private List<String> answers;
 
     public Feedback() {
@@ -70,5 +74,29 @@ public class Feedback {
 
     public void setAnswers(List<String> answers) {
         this.answers = answers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Feedback feedback1 = (Feedback) o;
+
+        if (rating != feedback1.rating) return false;
+        if (user != null ? !user.equals(feedback1.user) : feedback1.user != null) return false;
+        if (course != null ? !course.equals(feedback1.course) : feedback1.course != null) return false;
+        if (feedback != null ? !feedback.equals(feedback1.feedback) : feedback1.feedback != null) return false;
+        return answers != null ? answers.equals(feedback1.answers) : feedback1.answers == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = user != null ? user.hashCode() : 0;
+        result = 31 * result + (course != null ? course.hashCode() : 0);
+        result = 31 * result + rating;
+        result = 31 * result + (feedback != null ? feedback.hashCode() : 0);
+        result = 31 * result + (answers != null ? answers.hashCode() : 0);
+        return result;
     }
 }

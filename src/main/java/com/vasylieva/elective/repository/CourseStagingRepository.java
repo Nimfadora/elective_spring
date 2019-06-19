@@ -13,7 +13,7 @@ public interface CourseStagingRepository extends CrudRepository<CourseStaging, L
 
     List<CourseStaging> findByCategory(String category);
 
-    List<CourseStaging> findByAuthorAndCourseStatus(User author, CourseStatus courseStatus);
+    List<CourseStaging> findByAuthorIdAndCourseStatus(Long authorId, String courseStatus);
 
     @Query(value = "SELECT courses.* FROM courses c JOIN user_courses uc ON(c.id = sc.course_id) " +
             "WHERE uc.user_id = :user_id AND c.course_status IN (:statuses)",

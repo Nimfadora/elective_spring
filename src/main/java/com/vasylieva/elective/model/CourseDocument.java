@@ -20,13 +20,13 @@ public class CourseDocument {
     private CourseLevel level;
     private Set<String> skills;
     private Set<String> languages;
-    private Set<String> reviews;
+    private Set<Feedback> reviews;
 
     /* Only for JPA*/
     public CourseDocument() {
     }
 
-    public CourseDocument(Course course, User author, Set<String> reviews) {
+    public CourseDocument(Course course, User author) {
         this.id = course.getId();
         this.author = author.getName();
         this.authorCompany = author.getCompany();
@@ -120,11 +120,11 @@ public class CourseDocument {
         this.authorCompany = authorCompany;
     }
 
-    public Set<String> getReviews() {
+    public Set<Feedback> getReviews() {
         return reviews;
     }
 
-    public void setReviews(Set<String> reviews) {
+    public void setReviews(Set<Feedback> reviews) {
         this.reviews = reviews;
     }
 

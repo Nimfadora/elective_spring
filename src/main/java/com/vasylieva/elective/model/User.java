@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_entity")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,7 +18,7 @@ public class User {
     private String password;
     private Role role;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserCourse> courseList;
+    private List<CourseUser> courseList;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Feedback> feedbacks;
 
@@ -26,7 +26,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email, String company, String password, Role role, List<UserCourse> courseList) {
+    public User(String name, String email, String company, String password, Role role, List<CourseUser> courseList) {
         this.name = name;
         this.email = email;
         this.company = company;
@@ -51,11 +51,11 @@ public class User {
         this.company = company;
     }
 
-    public List<UserCourse> getCourseList() {
+    public List<CourseUser> getCourseList() {
         return courseList;
     }
 
-    public void setCourseList(List<UserCourse> courseList) {
+    public void setCourseList(List<CourseUser> courseList) {
         this.courseList = courseList;
     }
 
@@ -91,6 +91,14 @@ public class User {
         this.role = role;
     }
 
+    public List<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(List<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -98,7 +106,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
-                ", courseList=" + courseList.stream().map(UserCourse::toString).collect(Collectors.joining(",")) +
+                ", courseList=[]" +
                 '}';
     }
 }

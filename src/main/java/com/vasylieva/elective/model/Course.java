@@ -12,18 +12,24 @@ import java.util.Set;
 @Table(name = "course")
 public class Course {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<UserCourse> courseUsers = new HashSet<>();
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private Set<CourseUser> courseUsers = new HashSet<>();
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private Set<Feedback> courseFeedbacks = new HashSet<>();
+    @Enumerated(EnumType.STRING)
     private Language lang;
     private String category;
     private String title;
+    @Column(length = 2000)
     private String description;
+    @Column(name = "duration")
     private double durationHours;
+    @Enumerated(EnumType.STRING)
     private CourseLevel level;
     private String imgUrl;
+    @Column(name = "status")
     private String courseStatus;
     @Convert(converter = SetJsonConverter.class)
     private Set<String> skills;
@@ -70,11 +76,11 @@ public class Course {
         this.courseFeedbacks = courseFeedbacks;
     }
 
-    public Set<UserCourse> getCourseUsers() {
+    public Set<CourseUser> getCourseUsers() {
         return courseUsers;
     }
 
-    public void setCourseUsers(Set<UserCourse> courseUsers) {
+    public void setCourseUsers(Set<CourseUser> courseUsers) {
         this.courseUsers = courseUsers;
     }
 
